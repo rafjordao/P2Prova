@@ -2,7 +2,7 @@ package healthwatcher.model.complaint;
 
 import java.io.Serializable;
 
-public class Situation implements Serializable{
+public class Situation{
 
 	private int code;
 

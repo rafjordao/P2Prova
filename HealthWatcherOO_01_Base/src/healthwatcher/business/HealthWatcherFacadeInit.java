@@ -299,8 +299,7 @@ public class HealthWatcherFacadeInit {
 		return lista;
 	}
 
-	public void insert(Employee employee) throws ObjectAlreadyInsertedException,
-			ObjectNotValidException, TransactionException {
+	public void insert(Employee employee){
 		try {
 			getPm().beginTransaction();
 			employeeRecord.insert(employee);
@@ -353,9 +352,6 @@ public class HealthWatcherFacadeInit {
 		} catch (TransactionException e) {
 			getPm().rollbackTransaction();
 			throw e;
-		} catch (ObjectNotFoundException e) {
-			getPm().rollbackTransaction();
-			throw e;
 		} catch (Exception e) {
 			getPm().rollbackTransaction();
 		}
@@ -380,16 +376,12 @@ public class HealthWatcherFacadeInit {
 		return list;
 	}
 
-	public void update(Employee employee) throws TransactionException, RepositoryException,
-			ObjectNotFoundException, ObjectNotValidException {
+	public void update(Employee employee) {
 		try {
 			getPm().beginTransaction();
 			employeeRecord.update(employee);
 			getPm().commitTransaction();
 		} catch (TransactionException e) {
-			getPm().rollbackTransaction();
-			throw e;
-		} catch (ObjectNotValidException e) {
 			getPm().rollbackTransaction();
 			throw e;
 		} catch (ObjectNotFoundException e) {

@@ -3,7 +3,7 @@ package healthwatcher.model.complaint;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiseaseType implements java.io.Serializable {
+public class DiseaseType{
 
 	private int code;
 

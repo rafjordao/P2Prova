@@ -4,7 +4,7 @@ import healthwatcher.model.address.Address;
 import healthwatcher.model.employee.Employee;
 import lib.util.Date;
 
-public class SpecialComplaint extends Complaint {
+public class SpecialComplaint{
 
 	private short idade;
 

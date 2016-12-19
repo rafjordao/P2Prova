@@ -2,7 +2,7 @@ package healthwatcher.model.employee;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
+public class Employee{
 
 	private String name;
 

@@ -17,8 +17,7 @@ public class EmployeeRecord {
 		this.employeeRepository = rep;
 	}
 
-	public void insert(Employee employee) throws ObjectNotValidException,
-			ObjectAlreadyInsertedException, ObjectNotValidException, RepositoryException {
+	public void insert(Employee employee){
 		if (employeeRepository.exists(employee.getLogin())) {
 			throw new ObjectAlreadyInsertedException(ExceptionMessages.EXC_JA_EXISTE);
 		} else {

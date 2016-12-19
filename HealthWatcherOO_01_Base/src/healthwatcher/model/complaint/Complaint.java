@@ -5,7 +5,7 @@ import healthwatcher.model.employee.Employee;
 import lib.util.Date;
 
 //classe queixa eh uma classe basica que tem subclasses
-public abstract class Complaint implements java.io.Serializable {
+public abstract class Complaint{
 
 	public static final int QUEIXA_ALIMENTAR = 1;
 

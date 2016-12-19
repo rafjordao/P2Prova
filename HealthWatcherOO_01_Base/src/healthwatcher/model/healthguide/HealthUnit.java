@@ -3,7 +3,7 @@ package healthwatcher.model.healthguide;
 import java.util.Iterator;
 import java.util.List;
 
-public class HealthUnit implements java.io.Serializable {
+public class HealthUnit {
 
 	private int code;
 

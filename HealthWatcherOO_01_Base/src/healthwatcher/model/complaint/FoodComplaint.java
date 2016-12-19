@@ -4,7 +4,7 @@ import healthwatcher.model.address.Address;
 import healthwatcher.model.employee.Employee;
 import lib.util.Date;
 
-public class FoodComplaint extends Complaint {
+public class FoodComplaint{
 
 	private int qtdeComensais;
 
