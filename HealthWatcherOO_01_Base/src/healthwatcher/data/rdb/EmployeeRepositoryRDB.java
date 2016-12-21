@@ -14,13 +14,11 @@ import lib.exceptions.PersistenceMechanismException;
 import lib.exceptions.PersistenceSoftException;
 import lib.persistence.IPersistenceMechanism;
 
-
-
 public class EmployeeRepositoryRDB implements IEmployeeRepository {
 
 	private IPersistenceMechanism pm;
 
-	protected ResultSet resultSet; //Para consultas apenas
+	protected ResultSet resultSet; // Para consultas apenas
 
 	public EmployeeRepositoryRDB(IPersistenceMechanism pm) {
 		this.pm = pm;
@@ -29,7 +27,7 @@ public class EmployeeRepositoryRDB implements IEmployeeRepository {
 	public void insert(Employee employee) {
 		String sql = null;
 		try {
-			//Inserir na tabela agora
+			// Inserir na tabela agora
 			sql = "insert into SCBS_funcionario (login,nome,senha) values ('";
 
 			sql += employee.getLogin() + "',";
@@ -98,9 +96,9 @@ public class EmployeeRepositoryRDB implements IEmployeeRepository {
 	public void update(Employee employee) throws ObjectNotFoundException, ObjectNotValidException {
 		String sql = null;
 		try {
-			//Inserir na tabela agora
-			sql = "UPDATE SCBS_funcionario SET senha='" + employee.getPassword() + "', nome='"
-					+ employee.getName() + "' where login='" + employee.getLogin() + "'";
+			// Inserir na tabela agora
+			sql = "UPDATE SCBS_funcionario SET senha='" + employee.getPassword() + "', nome='" + employee.getName()
+					+ "' where login='" + employee.getLogin() + "'";
 			Statement stmt = (Statement) this.pm.getCommunicationChannel();
 			stmt.executeUpdate(sql);
 			stmt.close();

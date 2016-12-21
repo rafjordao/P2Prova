@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import lib.util.HTMLCode;
 
-
 public class ServletConfigRMI extends HttpServlet {
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out;
 
 		response.setContentType("text/html");
@@ -22,7 +20,6 @@ public class ServletConfigRMI extends HttpServlet {
 		out = response.getWriter();
 
 		try {
-
 			out.println(HTMLCode.htmlPage("Health-Watcher 2003", "Server name stored"));
 		} catch (Exception e) {
 			out.println(HTMLCode.errorPageAdministrator(e.getMessage()));

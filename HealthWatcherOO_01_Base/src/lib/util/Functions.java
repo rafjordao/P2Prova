@@ -9,9 +9,10 @@ public class Functions {
 	}
 
 	/**
-	 * Insira a descrição do método aqui.
-	 * Data de criação: (02/06/2000 10:45:43)
-	 * @param campo int
+	 * Insira a descrição do método aqui. Data de criação: (02/06/2000 10:45:43)
+	 * 
+	 * @param campo
+	 *            int
 	 */
 	public void campoPreenchido(int campo) {
 
@@ -21,8 +22,8 @@ public class Functions {
 	}
 
 	/**
-	 * Insira a descrição do método aqui.
-	 * Data de criação: (02/06/2000 10:45:43)
+	 * Insira a descrição do método aqui. Data de criação: (02/06/2000 10:45:43)
+	 * 
 	 * @param Object
 	 */
 	public void campoPreenchido(Object o) {
@@ -33,9 +34,10 @@ public class Functions {
 	}
 
 	/**
-	 * Insira a descrição do método aqui.
-	 * Data de criação: (02/06/2000 10:45:43)
-	 * @param campo java.lang.String
+	 * Insira a descrição do método aqui. Data de criação: (02/06/2000 10:45:43)
+	 * 
+	 * @param campo
+	 *            java.lang.String
 	 */
 	public void campoPreenchido(String campo) {
 
@@ -49,8 +51,8 @@ public class Functions {
 	}
 
 	/**
-	 * Insira a descrição do método aqui.
-	 * Data de criação: (02/06/2000 10:45:43)
+	 * Insira a descrição do método aqui. Data de criação: (02/06/2000 10:45:43)
+	 * 
 	 * @param short
 	 */
 	public void campoPreenchido(short campo) {

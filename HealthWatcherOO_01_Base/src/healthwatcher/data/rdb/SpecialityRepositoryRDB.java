@@ -1,6 +1,5 @@
 package healthwatcher.data.rdb;
 
-
 import healthwatcher.data.ISpecialityRepository;
 import healthwatcher.model.healthguide.MedicalSpeciality;
 
@@ -21,10 +20,6 @@ import lib.persistence.IPersistenceMechanism;
 import lib.util.ConcreteIterator;
 import lib.util.IteratorDsk;
 
-
-
-
-
 public class SpecialityRepositoryRDB implements ISpecialityRepository {
 
 	private IPersistenceMechanism mp;
@@ -35,8 +30,8 @@ public class SpecialityRepositoryRDB implements ISpecialityRepository {
 		this.mp = mp;
 	}
 
-	public void update(MedicalSpeciality esp) throws RepositoryException, ObjectNotFoundException,
-			ObjectNotValidException {
+	public void update(MedicalSpeciality esp)
+			throws RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 	}
 
 	public boolean exists(int num) throws RepositoryException {
@@ -79,8 +74,8 @@ public class SpecialityRepositoryRDB implements ISpecialityRepository {
 		return new ConcreteIterator(listaEsp);
 	}
 
-	public void insert(MedicalSpeciality spec) throws RepositoryException,
-			ObjectAlreadyInsertedException, ObjectNotValidException {
+	public void insert(MedicalSpeciality spec)
+			throws RepositoryException, ObjectAlreadyInsertedException, ObjectNotValidException {
 
 		if (spec != null) {
 			String sql = null;

@@ -1,8 +1,6 @@
 package healthwatcher.model.complaint;
 
-import java.io.Serializable;
-
-public class Situation{
+public class Situation {
 
 	private int code;
 

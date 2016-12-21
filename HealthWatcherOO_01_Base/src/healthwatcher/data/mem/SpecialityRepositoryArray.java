@@ -37,8 +37,7 @@ public class SpecialityRepositoryArray implements ISpecialityRepository {
 		}
 	}
 
-	public void update(MedicalSpeciality specialty) throws RepositoryException,
-			ObjectNotFoundException {
+	public void update(MedicalSpeciality specialty) throws RepositoryException, ObjectNotFoundException {
 		int i = getIndex(specialty.getCodigo());
 		if (i == indice) {
 			throw new ObjectNotFoundException("Specialty not found");
@@ -48,7 +47,6 @@ public class SpecialityRepositoryArray implements ISpecialityRepository {
 	}
 
 	public boolean exists(int code) throws RepositoryException {
-
 		boolean flag = false;
 
 		for (int i = 0; i < indice; i++) {
@@ -74,14 +72,13 @@ public class SpecialityRepositoryArray implements ISpecialityRepository {
 		this.ponteiro = 0;
 	}
 
-	public void insert(MedicalSpeciality specialty) throws RepositoryException,
-			ObjectAlreadyInsertedException {
+	public void insert(MedicalSpeciality specialty) throws RepositoryException, ObjectAlreadyInsertedException {
 		if (specialty == null) {
 			throw new IllegalArgumentException();
 		}
 		this.vetor[indice] = specialty;
 		specialty.setCodigo(indice++);
-		
+
 	}
 
 	public MedicalSpeciality search(int code) throws RepositoryException, ObjectNotFoundException {

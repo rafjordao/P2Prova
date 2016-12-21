@@ -7,16 +7,16 @@ import lib.exceptions.RepositoryException;
 import healthwatcher.model.address.Address;
 
 /**
- * Data collection interface to be implemented by concrete data
- * collections accessing any persistence mechanism.
+ * Data collection interface to be implemented by concrete data collections
+ * accessing any persistence mechanism.
  */
 public interface IAddressRepository {
 
-	public int insert(Address address) throws ObjectNotValidException,
-			ObjectAlreadyInsertedException, ObjectNotValidException, RepositoryException;
+	public int insert(Address address) throws ObjectNotValidException, ObjectAlreadyInsertedException,
+			ObjectNotValidException, RepositoryException;
 
-	public void update(Address address) throws ObjectNotValidException,
-			ObjectNotFoundException, ObjectNotValidException, RepositoryException;
+	public void update(Address address)
+			throws ObjectNotValidException, ObjectNotFoundException, ObjectNotValidException, RepositoryException;
 
 	public boolean exists(int code) throws RepositoryException;
 

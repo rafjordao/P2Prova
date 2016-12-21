@@ -1,6 +1,5 @@
 package healthwatcher.business;
 
-
 import healthwatcher.Constants;
 import healthwatcher.business.complaint.ComplaintRecord;
 import healthwatcher.business.complaint.DiseaseRecord;
@@ -30,10 +29,6 @@ import lib.persistence.IPersistenceMechanism;
 import lib.persistence.PersistenceMechanism;
 import lib.util.IteratorDsk;
 
-
-
-
-
 public class HealthWatcherFacadeInit {
 	private ComplaintRecord complaintRecord;
 
@@ -46,38 +41,10 @@ public class HealthWatcherFacadeInit {
 	private EmployeeRecord employeeRecord;
 
 	public HealthWatcherFacadeInit() {
-
-		this.complaintRecord = new ComplaintRecord(new ComplaintRepositoryArray());
-		if (Constants.isPersistent()) {
-			this.complaintRecord = new ComplaintRecord(new ComplaintRepositoryRDB(
-					(PersistenceMechanism) HealthWatcherFacade.getPm()));
-		}
-		this.healthUnitRecord = new HealthUnitRecord(new HealthUnitRepositoryArray());
-		if (Constants.isPersistent()) {
-			this.healthUnitRecord = new HealthUnitRecord(new HealthUnitRepositoryRDB(
-					(PersistenceMechanism) HealthWatcherFacade.getPm()));
-		}
-		this.specialityRecord = new MedicalSpecialityRecord(new SpecialityRepositoryArray());
-		if (Constants.isPersistent()) {
-			this.specialityRecord = new MedicalSpecialityRecord(new SpecialityRepositoryRDB(
-					(PersistenceMechanism) HealthWatcherFacade.getPm()));
-		}
-		DiseaseTypeRepositoryArray tp = new DiseaseTypeRepositoryArray();
-		this.diseaseRecord = new DiseaseRecord(tp);
-		if (Constants.isPersistent()) {
-			this.diseaseRecord = new DiseaseRecord(new DiseaseTypeRepositoryRDB(
-					(PersistenceMechanism) HealthWatcherFacade.getPm()));
-		}
-		EmployeeRepositoryArray er = new EmployeeRepositoryArray();
-		this.employeeRecord = new EmployeeRecord(er);
-		if (Constants.isPersistent()) {
-			this.employeeRecord = new EmployeeRecord(new EmployeeRepositoryRDB(
-					(PersistenceMechanism) HealthWatcherFacade.getPm()));
-		}
 	}
 
-	public void updateHealthUnit(HealthUnit unit) throws RepositoryException,
-			ObjectNotFoundException, TransactionException {
+	public void updateHealthUnit(HealthUnit unit)
+			throws RepositoryException, ObjectNotFoundException, TransactionException {
 		try {
 			getPm().beginTransaction();
 			healthUnitRecord.update(unit);
@@ -100,8 +67,8 @@ public class HealthWatcherFacadeInit {
 		return HealthWatcherFacade.getPm();
 	}
 
-	public void updateComplaint(Complaint complaint) throws TransactionException,
-			RepositoryException, ObjectNotFoundException, ObjectNotValidException {
+	public void updateComplaint(Complaint complaint)
+			throws TransactionException, RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 		try {
 			getPm().beginTransaction();
 			complaintRecord.update(complaint);
@@ -120,8 +87,8 @@ public class HealthWatcherFacadeInit {
 		}
 	}
 
-	public IteratorDsk searchSpecialitiesByHealthUnit(int code) throws ObjectNotFoundException,
-			RepositoryException, TransactionException {
+	public IteratorDsk searchSpecialitiesByHealthUnit(int code)
+			throws ObjectNotFoundException, RepositoryException, TransactionException {
 		IteratorDsk lista = null;
 		try {
 			getPm().beginTransaction();
@@ -140,8 +107,8 @@ public class HealthWatcherFacadeInit {
 		return lista;
 	}
 
-	public Complaint searchComplaint(int code) throws RepositoryException, ObjectNotFoundException,
-			TransactionException {
+	public Complaint searchComplaint(int code)
+			throws RepositoryException, ObjectNotFoundException, TransactionException {
 		Complaint q = null;
 		try {
 			getPm().beginTransaction();
@@ -162,8 +129,8 @@ public class HealthWatcherFacadeInit {
 		return q;
 	}
 
-	public DiseaseType searchDiseaseType(int code) throws RepositoryException,
-			ObjectNotFoundException, TransactionException {
+	public DiseaseType searchDiseaseType(int code)
+			throws RepositoryException, ObjectNotFoundException, TransactionException {
 		DiseaseType tp = null;
 		try {
 			getPm().beginTransaction();
@@ -184,8 +151,8 @@ public class HealthWatcherFacadeInit {
 		return tp;
 	}
 
-	public IteratorDsk searchHealthUnitsBySpeciality(int code) throws ObjectNotFoundException,
-			RepositoryException, TransactionException {
+	public IteratorDsk searchHealthUnitsBySpeciality(int code)
+			throws ObjectNotFoundException, RepositoryException, TransactionException {
 		IteratorDsk lista = null;
 		try {
 			getPm().beginTransaction();
@@ -206,8 +173,7 @@ public class HealthWatcherFacadeInit {
 		return lista;
 	}
 
-	public IteratorDsk getSpecialityList() throws RepositoryException, ObjectNotFoundException,
-			TransactionException {
+	public IteratorDsk getSpecialityList() throws RepositoryException, ObjectNotFoundException, TransactionException {
 		IteratorDsk lista = null;
 		try {
 			getPm().beginTransaction();
@@ -228,8 +194,7 @@ public class HealthWatcherFacadeInit {
 		return lista;
 	}
 
-	public IteratorDsk getDiseaseTypeList() throws RepositoryException, ObjectNotFoundException,
-			TransactionException {
+	public IteratorDsk getDiseaseTypeList() throws RepositoryException, ObjectNotFoundException, TransactionException {
 		IteratorDsk lista = null;
 		try {
 			getPm().beginTransaction();
@@ -250,13 +215,11 @@ public class HealthWatcherFacadeInit {
 		return lista;
 	}
 
-	public HealthUnit searchHealthUnit(int healthUnitCode) throws ObjectNotFoundException,
-			RepositoryException {
+	public HealthUnit searchHealthUnit(int healthUnitCode) throws ObjectNotFoundException, RepositoryException {
 		return healthUnitRecord.search(healthUnitCode);
 	}
 
-	public IteratorDsk getHealthUnitList() throws RepositoryException, ObjectNotFoundException,
-			TransactionException {
+	public IteratorDsk getHealthUnitList() throws RepositoryException, ObjectNotFoundException, TransactionException {
 		IteratorDsk lista = null;
 		try {
 			getPm().beginTransaction();
@@ -277,8 +240,8 @@ public class HealthWatcherFacadeInit {
 		return lista;
 	}
 
-	public IteratorDsk getPartialHealthUnitList() throws RepositoryException,
-			ObjectNotFoundException, TransactionException {
+	public IteratorDsk getPartialHealthUnitList()
+			throws RepositoryException, ObjectNotFoundException, TransactionException {
 		IteratorDsk lista = null;
 		try {
 			getPm().beginTransaction();
@@ -299,7 +262,8 @@ public class HealthWatcherFacadeInit {
 		return lista;
 	}
 
-	public void insert(Employee employee){
+	public void insert(Employee employee)
+			throws ObjectAlreadyInsertedException, ObjectNotValidException, TransactionException {
 		try {
 			getPm().beginTransaction();
 			employeeRecord.insert(employee);
@@ -318,8 +282,8 @@ public class HealthWatcherFacadeInit {
 		}
 	}
 
-	public int insertComplaint(Complaint complaint) throws RepositoryException,
-			ObjectAlreadyInsertedException, ObjectNotValidException, TransactionException {
+	public int insertComplaint(Complaint complaint)
+			throws RepositoryException, ObjectAlreadyInsertedException, ObjectNotValidException, TransactionException {
 		int retorno = 0;
 		try {
 			getPm().beginTransaction();
@@ -341,8 +305,7 @@ public class HealthWatcherFacadeInit {
 		return retorno;
 	}
 
-	public Employee searchEmployee(String login) throws ObjectNotFoundException,
-			TransactionException {
+	public Employee searchEmployee(String login) throws ObjectNotFoundException, TransactionException {
 		Employee employee = null;
 		try {
 			getPm().beginTransaction();
@@ -350,6 +313,9 @@ public class HealthWatcherFacadeInit {
 			getPm().commitTransaction();
 			return employee;
 		} catch (TransactionException e) {
+			getPm().rollbackTransaction();
+			throw e;
+		} catch (ObjectNotFoundException e) {
 			getPm().rollbackTransaction();
 			throw e;
 		} catch (Exception e) {
@@ -376,12 +342,16 @@ public class HealthWatcherFacadeInit {
 		return list;
 	}
 
-	public void update(Employee employee) {
+	public void update(Employee employee)
+			throws TransactionException, RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 		try {
 			getPm().beginTransaction();
 			employeeRecord.update(employee);
 			getPm().commitTransaction();
 		} catch (TransactionException e) {
+			getPm().rollbackTransaction();
+			throw e;
+		} catch (ObjectNotValidException e) {
 			getPm().rollbackTransaction();
 			throw e;
 		} catch (ObjectNotFoundException e) {

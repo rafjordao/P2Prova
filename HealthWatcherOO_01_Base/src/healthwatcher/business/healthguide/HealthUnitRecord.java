@@ -16,19 +16,16 @@ public class HealthUnitRecord {
 		this.healthUnitRep = repUnidadeSaude;
 	}
 
-	public void update(HealthUnit unit) throws RepositoryException, ObjectNotFoundException,
-			ObjectNotValidException {
+	public void update(HealthUnit unit) throws RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 		healthUnitRep.update(unit);
 	}
 
-	public IteratorDsk searchSpecialityByHealthUnit(int code) throws ObjectNotFoundException,
-			RepositoryException {
+	public IteratorDsk searchSpecialityByHealthUnit(int code) throws ObjectNotFoundException, RepositoryException {
 		HealthUnit us = healthUnitRep.search(code);
 		return new ConcreteIterator(us.getSpecialities());
 	}
 
-	public IteratorDsk searchHealthUnitsBySpeciality(int code) throws ObjectNotFoundException,
-			RepositoryException {
+	public IteratorDsk searchHealthUnitsBySpeciality(int code) throws ObjectNotFoundException, RepositoryException {
 		return healthUnitRep.getHealthUnitListBySpeciality(code);
 	}
 
@@ -36,13 +33,11 @@ public class HealthUnitRecord {
 		return healthUnitRep.getHealthUnitList();
 	}
 
-	public IteratorDsk getPartialHealthUnitList() throws RepositoryException,
-			ObjectNotFoundException {
+	public IteratorDsk getPartialHealthUnitList() throws RepositoryException, ObjectNotFoundException {
 		return healthUnitRep.getPartialHealthUnitList();
 	}
 
-	public HealthUnit search(int healthUnitCode) throws ObjectNotFoundException,
-			RepositoryException {
+	public HealthUnit search(int healthUnitCode) throws ObjectNotFoundException, RepositoryException {
 		return healthUnitRep.search(healthUnitCode);
 	}
 }

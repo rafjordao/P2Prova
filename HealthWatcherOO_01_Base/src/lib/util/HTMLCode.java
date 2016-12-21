@@ -4,8 +4,8 @@ import healthwatcher.Constants;
 
 /**
  *
- * Classe HTMLCode - possui métodos para facilitar a 
- * impressão dos códigos html de saída dos servlets
+ * Classe HTMLCode - possui métodos para facilitar a impressão dos códigos html
+ * de saída dos servlets
  *
  */
 public class HTMLCode {

@@ -1,6 +1,6 @@
 package healthwatcher.model.address;
 
-public class Address implements java.io.Serializable {
+public class Address {
 
 	private int code;
 
@@ -21,8 +21,8 @@ public class Address implements java.io.Serializable {
 	public Address() {
 	}
 
-	public Address(String street, String complement, String zip, String state, String phone,
-			String city, String neighbourhood) {
+	public Address(String street, String complement, String zip, String state, String phone, String city,
+			String neighbourhood) {
 
 		this.street = street;
 		this.complement = complement;

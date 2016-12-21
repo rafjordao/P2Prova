@@ -20,7 +20,7 @@ public class HealthUnitRepositoryArray implements IHealthUnitRepository {
 
 	private int indice;
 
-	private int ponteiro; //para navegacao
+	private int ponteiro; // para navegacao
 
 	public HealthUnitRepositoryArray() {
 		vetor = new HealthUnit[100];
@@ -87,13 +87,11 @@ public class HealthUnitRepositoryArray implements IHealthUnitRepository {
 		return new ConcreteIterator(Arrays.asList(vetor));
 	}
 
-	public IteratorDsk getPartialHealthUnitList() throws RepositoryException,
-			ObjectNotFoundException {
+	public IteratorDsk getPartialHealthUnitList() throws RepositoryException, ObjectNotFoundException {
 		return new ConcreteIterator(Arrays.asList(vetor));
 	}
 
-	public IteratorDsk getHealthUnitListBySpeciality(int code) throws RepositoryException,
-			ObjectNotFoundException {
+	public IteratorDsk getHealthUnitListBySpeciality(int code) throws RepositoryException, ObjectNotFoundException {
 		int aux = 0;
 		List response = new ArrayList();
 
@@ -105,11 +103,10 @@ public class HealthUnitRepositoryArray implements IHealthUnitRepository {
 			aux++;
 		}
 
-		if (! response.isEmpty()) {
+		if (!response.isEmpty()) {
 			return new ConcreteIterator(response);
 		} else {
-			throw new ObjectNotFoundException(
-					"There isn't registered health units for the specialty");
+			throw new ObjectNotFoundException("There isn't registered health units for the specialty");
 		}
 	}
 

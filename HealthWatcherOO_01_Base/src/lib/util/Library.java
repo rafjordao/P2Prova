@@ -12,8 +12,7 @@ public class Library {
 		return readFile(file);
 	}
 
-	public static String getFileReplace(String keyWord, String newWord, String file)
-			throws FileNotFoundException {
+	public static String getFileReplace(String keyWord, String newWord, String file) throws FileNotFoundException {
 		String text;
 
 		text = readFile(file);
@@ -92,9 +91,9 @@ public class Library {
 	}
 
 	/**
-	 * Recebe um string e substitui os carriage return e/ou
-	 * line feed por um \\n, o qual sera impresso no codigo
-	 * javascript como valor para um input (upload de valores)
+	 * Recebe um string e substitui os carriage return e/ou line feed por um
+	 * \\n, o qual sera impresso no codigo javascript como valor para um input
+	 * (upload de valores)
 	 */
 	public static String ajusteString(String aux) {
 		StringTokenizer stoken;

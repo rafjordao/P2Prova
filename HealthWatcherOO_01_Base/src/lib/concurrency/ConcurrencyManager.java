@@ -15,14 +15,14 @@ public class ConcurrencyManager {
 	public synchronized void beginExecution(Object key) {
 
 		while (keys.containsKey(key)) {
-			//System.out.println("You have to wait -> ConcurrencyManager");
+			// System.out.println("You have to wait -> ConcurrencyManager");
 			try {
 				wait();
 			} catch (InterruptedException ex) {
 				throw new RuntimeException(ERROR_MESSAGE + ex.getMessage());
 			}
 		}
-		//System.out.println("You can execute -> ConcurrencyManager");
+		// System.out.println("You can execute -> ConcurrencyManager");
 		keys.put(key, null);
 
 	}
@@ -38,7 +38,6 @@ public class ConcurrencyManager {
 			System.out.println(ERROR_MESSAGE + ex.getMessage());
 		} finally {
 			notifyAll();
-
 		}
 	}
 }

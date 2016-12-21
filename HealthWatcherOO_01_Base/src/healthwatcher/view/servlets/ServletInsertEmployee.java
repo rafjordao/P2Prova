@@ -1,6 +1,5 @@
 package healthwatcher.view.servlets;
 
-
 import healthwatcher.model.employee.Employee;
 
 import java.io.IOException;
@@ -18,52 +17,50 @@ import lib.exceptions.ObjectNotValidException;
 import lib.exceptions.TransactionException;
 import lib.util.HTMLCode;
 
-
-
 public class ServletInsertEmployee extends HWServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        PrintWriter out;
-        Employee employee;
-        HttpSession session = request.getSession(false);
-       
-        response.setContentType("text/html");
+		PrintWriter out;
+		Employee employee;
+		HttpSession session = request.getSession(false);
 
-        out = response.getWriter();
+		response.setContentType("text/html");
 
-        try {
-            if (session == null) {
-                throw new InvalidSessionException();
-            }            
+		out = response.getWriter();
 
-            //Complaint Normal
-            String name = request.getParameter("name");
-            String login = request.getParameter("login");
-            String password = request.getParameter("password");
-            
-            employee = new Employee(login, password, name);
-            
-            facade.insert(employee);
-            
-            out.println(HTMLCode.htmlPageAdministrator("Operation executed", "Employee inserted"));
-        } catch (ObjectAlreadyInsertedException e) {
-        	out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
-            e.printStackTrace(out);
-        } catch (ObjectNotValidException e) {
-        	out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
-            e.printStackTrace(out);            
-        }catch (InvalidSessionException e) {
-        	out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
-            e.printStackTrace(out);
-        } catch(InsertEntryException e){ 
-        	out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
-            e.printStackTrace(out);
-        }catch(TransactionException e){
-        	out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
-            e.printStackTrace(out);            
-        }finally {
-            out.close();
-        }
-    }
+		try {
+			if (session == null) {
+				throw new InvalidSessionException();
+			}
+
+			// Complaint Normal
+			String name = request.getParameter("name");
+			String login = request.getParameter("login");
+			String password = request.getParameter("password");
+
+			employee = new Employee(login, password, name);
+
+			facade.insert(employee);
+
+			out.println(HTMLCode.htmlPageAdministrator("Operation executed", "Employee inserted"));
+		} catch (ObjectAlreadyInsertedException e) {
+			out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
+			e.printStackTrace(out);
+		} catch (ObjectNotValidException e) {
+			out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
+			e.printStackTrace(out);
+		} catch (InvalidSessionException e) {
+			out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
+			e.printStackTrace(out);
+		} catch (InsertEntryException e) {
+			out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
+			e.printStackTrace(out);
+		} catch (TransactionException e) {
+			out.println(lib.util.HTMLCode.errorPageAdministrator(e.getMessage()));
+			e.printStackTrace(out);
+		} finally {
+			out.close();
+		}
+	}
 }

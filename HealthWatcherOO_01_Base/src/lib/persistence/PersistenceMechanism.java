@@ -12,7 +12,6 @@ import lib.exceptions.ExceptionMessages;
 import lib.exceptions.PersistenceMechanismException;
 import lib.exceptions.TransactionException;
 
-
 public class PersistenceMechanism implements IPersistenceMechanism {
 
 	private static PersistenceMechanism singleton;
@@ -47,8 +46,7 @@ public class PersistenceMechanism implements IPersistenceMechanism {
 		}
 	}
 
-	public synchronized PreparedStatement getPreparedStatement(String sql)
-			throws PersistenceMechanismException {
+	public synchronized PreparedStatement getPreparedStatement(String sql) throws PersistenceMechanismException {
 		try {
 			return getCommunicationChannel(false).prepareStatement(sql);
 		} catch (SQLException ex) {
@@ -139,16 +137,14 @@ public class PersistenceMechanism implements IPersistenceMechanism {
 			return getCommunicationChannel(false).createStatement();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			throw new PersistenceMechanismException(
-					ExceptionMessages.EXC_FALHA_GET_CANAL_COMUNICACAO);
+			throw new PersistenceMechanismException(ExceptionMessages.EXC_FALHA_GET_CANAL_COMUNICACAO);
 		}
 	}
 
 	/**
 	 * Retorna um java.sql.Connection
 	 */
-	private synchronized Connection getCommunicationChannel(boolean porTransacao)
-			throws PersistenceMechanismException {
+	private synchronized Connection getCommunicationChannel(boolean porTransacao) throws PersistenceMechanismException {
 		Connection resposta = null;
 		try {
 			Thread currentThread = Thread.currentThread();
@@ -182,17 +178,15 @@ public class PersistenceMechanism implements IPersistenceMechanism {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			throw new PersistenceMechanismException(
-					ExceptionMessages.EXC_FALHA_GET_CANAL_COMUNICACAO);
+			throw new PersistenceMechanismException(ExceptionMessages.EXC_FALHA_GET_CANAL_COMUNICACAO);
 		}
 		return resposta;
 	}
 
-	public static synchronized PersistenceMechanism getInstance()
-			throws PersistenceMechanismException {
+	public static synchronized PersistenceMechanism getInstance() throws PersistenceMechanismException {
 		if (singleton == null)
-			singleton = new PersistenceMechanism(Constants.DB_URL, Constants.DB_LOGIN,
-					Constants.DB_PASS, Constants.DB_DRIVER);
+			singleton = new PersistenceMechanism(Constants.DB_URL, Constants.DB_LOGIN, Constants.DB_PASS,
+					Constants.DB_DRIVER);
 		return singleton;
 	}
 
@@ -213,8 +207,7 @@ public class PersistenceMechanism implements IPersistenceMechanism {
 		releaseCommunicationChannel(false);
 	}
 
-	private synchronized void releaseCommunicationChannel(boolean porTransacao)
-			throws PersistenceMechanismException {
+	private synchronized void releaseCommunicationChannel(boolean porTransacao) throws PersistenceMechanismException {
 		try {
 			Thread currentThread = Thread.currentThread();
 			int threadId = currentThread.hashCode();
@@ -237,8 +230,7 @@ public class PersistenceMechanism implements IPersistenceMechanism {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			throw new PersistenceMechanismException(
-					ExceptionMessages.EXC_FALHA_LIBERAR_CANAL_COMUNICACAO);
+			throw new PersistenceMechanismException(ExceptionMessages.EXC_FALHA_LIBERAR_CANAL_COMUNICACAO);
 		} finally {
 			notifyAll();
 		}

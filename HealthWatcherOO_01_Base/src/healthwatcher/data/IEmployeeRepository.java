@@ -8,11 +8,11 @@ import healthwatcher.model.employee.Employee;
 
 public interface IEmployeeRepository {
 
-	public void insert(Employee employee) throws ObjectNotValidException,
-			ObjectAlreadyInsertedException, ObjectNotValidException, RepositoryException;
-
-	public void update(Employee employee) throws ObjectNotValidException, ObjectNotFoundException,
+	public void insert(Employee employee) throws ObjectNotValidException, ObjectAlreadyInsertedException,
 			ObjectNotValidException, RepositoryException;
+
+	public void update(Employee employee)
+			throws ObjectNotValidException, ObjectNotFoundException, ObjectNotValidException, RepositoryException;
 
 	public boolean exists(String login) throws RepositoryException;
 

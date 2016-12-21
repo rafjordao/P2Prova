@@ -1,5 +1,6 @@
 package healthwatcher.model.healthguide;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class HealthUnit {
 	}
 
 	public boolean hasSpeciality(int code) {
-		for(Iterator i = specialities.iterator(); i.hasNext();) {
+		for (Iterator i = specialities.iterator(); i.hasNext();) {
 			MedicalSpeciality m = (MedicalSpeciality) i.next();
 			if (m.getCodigo() == code) {
 				return true;
@@ -28,7 +29,7 @@ public class HealthUnit {
 		}
 		return false;
 	}
-	
+
 	public int getCode() {
 		return this.code;
 	}
