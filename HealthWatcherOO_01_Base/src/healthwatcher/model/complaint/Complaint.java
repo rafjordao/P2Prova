@@ -1,11 +1,13 @@
 package healthwatcher.model.complaint;
 
+import java.io.Serializable;
+
 import healthwatcher.model.address.Address;
 import healthwatcher.model.employee.Employee;
 import lib.util.Date;
 
 //classe queixa eh uma classe basica que tem subclasses
-public abstract class Complaint{
+public abstract class Complaint {
 
 	public static final int QUEIXA_ALIMENTAR = 1;
 
@@ -38,11 +40,10 @@ public abstract class Complaint{
 	public Complaint() {
 	}
 
-	public Complaint(String solicitante, String descricao, String observacao, String email,
-			Employee atendente, int situacao, Date dataParecer, Date dataQueixa,
-			Address enderecoSolicitante, long timestamp) {
+	public Complaint(String solicitante, String descricao, String observacao, String email, Employee atendente,
+			int situacao, Date dataParecer, Date dataQueixa, Address enderecoSolicitante, long timestamp) {
 
-		//Numero fica vazio por enquanto - no Repositorio ele eh inicializado
+		// Numero fica vazio por enquanto - no Repositorio ele eh inicializado
 		this.codigo = 0;
 		this.solicitante = solicitante;
 		this.descricao = descricao;

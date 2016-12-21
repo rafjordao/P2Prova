@@ -1,6 +1,6 @@
 package healthwatcher.model.healthguide;
 
-public class MedicalSpeciality{
+public class MedicalSpeciality {
 
 	private int codigo;
 

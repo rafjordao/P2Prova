@@ -31,13 +31,11 @@
  */
 package healthwatcher.view.servlets;
 
-
 import healthwatcher.view.IFacade;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-
 
 /**
  * TODO - describe this file
@@ -48,27 +46,27 @@ public abstract class HWServlet extends HttpServlet {
 
 	protected IFacade facade = null;
 
-    public void init(ServletConfig config) throws ServletException {
+	public void init(ServletConfig config) throws ServletException {
 
-        try {
-            System.out.println("About to lookup...");
-            facade = (IFacade) java.rmi.Naming.lookup("//" + healthwatcher.Constants.SERVER_NAME + "/" + healthwatcher.Constants.SYSTEM_NAME);
-            System.out.println("Remote DisqueSaude found");
-        } catch (java.rmi.RemoteException rmiEx) {
-            rmiInitExceptionHandling(rmiEx);
-        } catch (java.rmi.NotBoundException rmiEx) {
-            rmiInitExceptionHandling(rmiEx);
-        } catch (java.net.MalformedURLException rmiEx) {
-            rmiInitExceptionHandling(rmiEx);
-        }
-    }
+		try {
+			System.out.println("About to lookup...");
+			facade = (IFacade) java.rmi.Naming
+					.lookup("//" + healthwatcher.Constants.SERVER_NAME + "/" + healthwatcher.Constants.SYSTEM_NAME);
+			System.out.println("Remote DisqueSaude found");
+		} catch (java.rmi.RemoteException rmiEx) {
+			rmiInitExceptionHandling(rmiEx);
+		} catch (java.rmi.NotBoundException rmiEx) {
+			rmiInitExceptionHandling(rmiEx);
+		} catch (java.net.MalformedURLException rmiEx) {
+			rmiInitExceptionHandling(rmiEx);
+		}
+	}
 
-    protected void rmiInitExceptionHandling(Throwable exception) {
-    	String error =  "<p>****************************************************<br>" +
-                 "Error during servlet initialization!<br>" +
-                 "The exception message is:<br><dd>" + exception.getMessage() +
-                 "<p>You may have to restart the servlet container.<br>" +
-                 "*******************************************************";
-        System.out.println(error);
-    }
+	protected void rmiInitExceptionHandling(Throwable exception) {
+		String error = "<p>****************************************************<br>"
+				+ "Error during servlet initialization!<br>" + "The exception message is:<br><dd>"
+				+ exception.getMessage() + "<p>You may have to restart the servlet container.<br>"
+				+ "*******************************************************";
+		System.out.println(error);
+	}
 }

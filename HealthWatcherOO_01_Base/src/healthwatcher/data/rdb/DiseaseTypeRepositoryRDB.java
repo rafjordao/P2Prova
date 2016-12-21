@@ -21,10 +21,6 @@ import lib.persistence.IPersistenceMechanism;
 import lib.util.ConcreteIterator;
 import lib.util.IteratorDsk;
 
-
-
-
-
 public class DiseaseTypeRepositoryRDB implements IDiseaseRepository {
 
 	private IPersistenceMechanism mp;
@@ -35,8 +31,7 @@ public class DiseaseTypeRepositoryRDB implements IDiseaseRepository {
 		this.mp = mp;
 	}
 
-	public void update(DiseaseType td) throws RepositoryException, ObjectNotFoundException,
-			ObjectNotValidException {
+	public void update(DiseaseType td) throws RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 	}
 
 	public void filter(int codigo) throws RepositoryException, ObjectNotFoundException {
@@ -77,26 +72,27 @@ public class DiseaseTypeRepositoryRDB implements IDiseaseRepository {
 		return new ConcreteIterator(listatd);
 	}
 
-	public void insert(DiseaseType td) throws RepositoryException, ObjectAlreadyInsertedException,
-			ObjectNotValidException {
+	public void insert(DiseaseType td)
+			throws RepositoryException, ObjectAlreadyInsertedException, ObjectNotValidException {
 
 	}
 
 	/**
 	 * Método para recuperar um tipo de doença do banco de dados.
 	 *
-	 * @param codigo código do tipo de doença a ser procurado
-	 * @return um objeto tipo doença montado a partir dos dados
-	 *           do banco de dados
+	 * @param codigo
+	 *            código do tipo de doença a ser procurado
+	 * @return um objeto tipo doença montado a partir dos dados do banco de
+	 *         dados
 	 */
 	public DiseaseType partialSearch(int codigo) throws ObjectNotFoundException {
 
-		//$System.out.println("RepositorioTipoDoenca::procuraParcial()->begin");
+		// $System.out.println("RepositorioTipoDoenca::procuraParcial()->begin");
 
 		DiseaseType td = null;
 		String nome, descricao, manifestacao, duracao;
 		String sql = null;
-		// Tentativa de recuperar os dados do bd usando o código 
+		// Tentativa de recuperar os dados do bd usando o código
 		// informado
 		try {
 			sql = "select * from SCBS_tipodoenca where " + "codigo = '" + codigo + "'";
@@ -111,8 +107,8 @@ public class DiseaseTypeRepositoryRDB implements IDiseaseRepository {
 				manifestacao = resultSet.getString("manifestacao");
 				duracao = resultSet.getString("duracao");
 
-				//preparar para buscar em outra tabela os sintomas desta doenca
-				//depois vai chamar deepAccess() de SymptomRepositoryArray
+				// preparar para buscar em outra tabela os sintomas desta doenca
+				// depois vai chamar deepAccess() de SymptomRepositoryArray
 			} else {
 				throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_PROCURA);
 			}
@@ -145,9 +141,10 @@ public class DiseaseTypeRepositoryRDB implements IDiseaseRepository {
 	/**
 	 * Método para recuperar um tipo de doença do banco de dados.
 	 *
-	 * @param codigo código do tipo de doença a ser procurado
-	 * @return um objeto tipo doença montado a partir dos dados
-	 *		   do banco de dados
+	 * @param codigo
+	 *            código do tipo de doença a ser procurado
+	 * @return um objeto tipo doença montado a partir dos dados do banco de
+	 *         dados
 	 */
 	public DiseaseType search(int code) throws RepositoryException, ObjectNotFoundException {
 
@@ -155,7 +152,7 @@ public class DiseaseTypeRepositoryRDB implements IDiseaseRepository {
 		String nome, descricao, manifestacao, duracao;
 		List sintomas;
 		String sql = null;
-		// Tentativa de recuperar os dados do bd usando o código 
+		// Tentativa de recuperar os dados do bd usando o código
 		// informado
 		try {
 			sql = "select * from SCBS_tipodoenca where " + "codigo = '" + code + "'";
@@ -170,8 +167,8 @@ public class DiseaseTypeRepositoryRDB implements IDiseaseRepository {
 				manifestacao = resultSet.getString("manifestacao");
 				duracao = resultSet.getString("duracao");
 
-				//preparar para buscar em outra tabela os sintomas desta doenca
-				//depois vai chamar deepAccess() de RepositorioSintomaArray
+				// preparar para buscar em outra tabela os sintomas desta doenca
+				// depois vai chamar deepAccess() de RepositorioSintomaArray
 			} else {
 				throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_PROCURA);
 			}
@@ -225,7 +222,7 @@ public class DiseaseTypeRepositoryRDB implements IDiseaseRepository {
 			e.printStackTrace();
 			throw new RepositoryException(ExceptionMessages.EXC_FALHA_BD);
 		}
-		
+
 		return td;
 	}
 }

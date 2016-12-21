@@ -5,9 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import lib.util.LocalIterator;
 
-
-public class IteratorRMITargetAdapter extends UnicastRemoteObject implements
-		IIteratorRMITargetAdapter {
+public class IteratorRMITargetAdapter extends UnicastRemoteObject implements IIteratorRMITargetAdapter {
 
 	private LocalIterator iterator;
 
@@ -15,27 +13,28 @@ public class IteratorRMITargetAdapter extends UnicastRemoteObject implements
 
 	public IteratorRMITargetAdapter(LocalIterator i, int cacheSize) throws RemoteException {
 
-		/*  better to use this... in thesis.
-		 public IteratorRMITargetAdapter(Iterator i, int cacheSize)
-		 throws RemoteException {        
-		 iterator = (LocalIterator)  i;
+		/*
+		 * better to use this... in thesis. public
+		 * IteratorRMITargetAdapter(Iterator i, int cacheSize) throws
+		 * RemoteException { iterator = (LocalIterator) i;
 		 */
 
 		iterator = i;
 		this.cacheSize = cacheSize;
 
 		/*
-		 This registration could be done for robustness
-		 Naming.rebind("/Iterator", this);
-
+		 * This registration could be done for robustness
+		 * Naming.rebind("/Iterator", this);
+		 * 
 		 */
 	}
 
-	/* correction: CommunicationException should be thrown to avoid this  
-	 Iterator/LocalIterator problem. We would use Iterator everywhere and no exception 
-	 handling would be needed.
+	/*
+	 * correction: CommunicationException should be thrown to avoid this
+	 * Iterator/LocalIterator problem. We would use Iterator everywhere and no
+	 * exception handling would be needed.
 	 */
-	public Object[] getNext() throws RemoteException /*,CommunicationException*/{
+	public Object[] getNext() throws RemoteException /* ,CommunicationException */ {
 
 		Object[] cache = new Object[cacheSize];
 
@@ -44,7 +43,7 @@ public class IteratorRMITargetAdapter extends UnicastRemoteObject implements
 		for (int i = 0; (i < cacheSize) && iterator.hasNext(); i++) {
 			cache[i] = iterator.next();
 
-			//  System.out.println("+" + cache[i]);
+			// System.out.println("+" + cache[i]);
 		}
 
 		return cache;

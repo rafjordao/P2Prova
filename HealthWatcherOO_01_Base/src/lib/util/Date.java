@@ -6,7 +6,6 @@ import java.util.GregorianCalendar;
 
 import lib.exceptions.InvalidDateException;
 
-
 public class Date implements Serializable {
 	private int dia;
 
@@ -52,43 +51,30 @@ public class Date implements Serializable {
 
 	public Date(int segundo, int minuto, int hora, int dia, int mes, int ano)
 			throws InvalidDateException {
-		try {
-			this.dia = dia;
-			this.mes = mes;
-			this.ano = ano;
-			horario = new Schedule(segundo, minuto, hora);
+		this.dia = dia;
+		this.mes = mes;
+		this.ano = ano;
+		horario = new Schedule(segundo, minuto, hora);
 
-			validaData(dia, mes, ano);
-		} catch (InvalidDateException e) {
-			throw new InvalidDateException(dia, mes, ano);
-		}
-
+		validaData(dia, mes, ano);
 	}
 
 	public Date(String diaStr, String mesStr, String anoStr) throws InvalidDateException {
-		try {
-			this.dia = Integer.parseInt(diaStr);
-			this.mes = Integer.parseInt(mesStr);
-			this.ano = Integer.parseInt(anoStr);
-			this.horario = null;
-		} catch (Exception e) {
-			throw new InvalidDateException(dia, mes, ano);
-		}
-
+		this.dia = Integer.parseInt(diaStr);
+		this.mes = Integer.parseInt(mesStr);
+		this.ano = Integer.parseInt(anoStr);
+		this.horario = null;
+		
 		validaData(dia, mes, ano);
 	}
 
 	public Date(String segundoStr, String minutoStr, String horaStr, String diaStr, String mesStr,
 			String anoStr) throws InvalidDateException {
-		try {
-			this.dia = Integer.parseInt(diaStr);
-			this.mes = Integer.parseInt(mesStr);
-			this.ano = Integer.parseInt(anoStr);
-			this.horario = new Schedule(Integer.parseInt(segundoStr), Integer.parseInt(minutoStr),
-					Integer.parseInt(horaStr));
-		} catch (Exception e) {
-			throw new InvalidDateException(dia, mes, ano);
-		}
+		this.dia = Integer.parseInt(diaStr);
+		this.mes = Integer.parseInt(mesStr);
+		this.ano = Integer.parseInt(anoStr);
+		this.horario = new Schedule(Integer.parseInt(segundoStr), Integer.parseInt(minutoStr),
+				Integer.parseInt(horaStr));
 
 		validaData(dia, mes, ano);
 	}
@@ -178,7 +164,7 @@ public class Date implements Serializable {
 	}
 
 	/**
-	 * Defini��o do M�todo
+	 * Definicao do metodo
 	 * 
 	 * 
 	 * @param data
@@ -223,7 +209,8 @@ public class Date implements Serializable {
 		diferDia = dia2 - dia;
 		diferMes = mes2 - mes;
 		diferAno = ano2 - ano;
-		diferenca = (diferSegundo + 60 * (diferMinuto + 60 * (diferHora + 24 * (diferDia + 30 * (diferMes + 12 * diferAno)))));
+		diferenca = (diferSegundo
+				+ 60 * (diferMinuto + 60 * (diferHora + 24 * (diferDia + 30 * (diferMes + 12 * diferAno)))));
 
 		return diferenca;
 	}
@@ -255,7 +242,8 @@ public class Date implements Serializable {
 
 		calendar.set(data.getAno() - 1900, data.getMes(), data.getDia());
 
-		// calendar.setTime(new Date(data.getAno()-1900,data.getMes(),data.getDia()));
+		// calendar.setTime(new
+		// Date(data.getAno()-1900,data.getMes(),data.getDia()));
 		// calendar.setTime(new Date());
 		diaDaSemana = calendar.get(Calendar.DAY_OF_WEEK);
 
@@ -280,9 +268,8 @@ public class Date implements Serializable {
 	}
 
 	/**
-	 * Retorna a representa��o string da data,
-	 * recebe como par�metro um constante inteira que representa
-	 * o formato data
+	 * Retorna a representa��o string da data, recebe como par�metro um
+	 * constante inteira que representa o formato data
 	 */
 	public static String format(Date data, int formato) {
 		String diaStr = "", mesStr = "", anoStr = "";
@@ -494,78 +481,73 @@ public class Date implements Serializable {
 	}
 
 	/**
-	 * Transforma string em data.
-	 * recebe como par�metro o String e assume
-	 * / como o separador utilizado.
+	 * Transforma string em data. recebe como par�metro o String e assume /
+	 * como o separador utilizado.
 	 */
 	public static Date stringToData(String dataStr, int formato) throws InvalidDateException {
 		String diaStr, mesStr, anoStr;
 		String minutoStr, segundoStr, horaStr;
 		Date data = null;
 
-		try {
-			switch (formato) {
+		switch (formato) {
 
-			case (FORMATO1):
-				diaStr = dataStr.substring(0, 2);
-				mesStr = dataStr.substring(3, 5);
-				anoStr = dataStr.substring(6, 10);
-				data = new Date(diaStr, mesStr, anoStr);
+		case (FORMATO1):
+			diaStr = dataStr.substring(0, 2);
+			mesStr = dataStr.substring(3, 5);
+			anoStr = dataStr.substring(6, 10);
+			data = new Date(diaStr, mesStr, anoStr);
 
-				break;
+			break;
 
-			case (FORMATO2):
-				diaStr = dataStr.substring(0, 2);
-				mesStr = dataStr.substring(3, 5);
-				anoStr = dataStr.substring(6, 10);
-				horaStr = dataStr.substring(11, 13);
-				minutoStr = dataStr.substring(14, 16);
-				segundoStr = dataStr.substring(17, 19);
-				data = new Date(segundoStr, minutoStr, horaStr, diaStr, mesStr, anoStr);
+		case (FORMATO2):
+			diaStr = dataStr.substring(0, 2);
+			mesStr = dataStr.substring(3, 5);
+			anoStr = dataStr.substring(6, 10);
+			horaStr = dataStr.substring(11, 13);
+			minutoStr = dataStr.substring(14, 16);
+			segundoStr = dataStr.substring(17, 19);
+			data = new Date(segundoStr, minutoStr, horaStr, diaStr, mesStr, anoStr);
 
-				break;
+			break;
 
-			case (FORMATO3):
-				diaStr = dataStr.substring(0, 2);
-				mesStr = dataStr.substring(2, 4);
-				anoStr = dataStr.substring(4, 8);
+		case (FORMATO3):
+			diaStr = dataStr.substring(0, 2);
+			mesStr = dataStr.substring(2, 4);
+			anoStr = dataStr.substring(4, 8);
 
-				break;
+			break;
 
-			case (FORMATO4):
-				diaStr = dataStr.substring(0, 2);
-				mesStr = dataStr.substring(2, 4);
-				anoStr = dataStr.substring(4, 8);
-				horaStr = dataStr.substring(8, 10);
-				minutoStr = dataStr.substring(10, 12);
-				segundoStr = dataStr.substring(12, 14);
-				data = new Date(segundoStr, minutoStr, horaStr, diaStr, mesStr, anoStr);
+		case (FORMATO4):
+			diaStr = dataStr.substring(0, 2);
+			mesStr = dataStr.substring(2, 4);
+			anoStr = dataStr.substring(4, 8);
+			horaStr = dataStr.substring(8, 10);
+			minutoStr = dataStr.substring(10, 12);
+			segundoStr = dataStr.substring(12, 14);
+			data = new Date(segundoStr, minutoStr, horaStr, diaStr, mesStr, anoStr);
 
-				break;
+			break;
 
-			case (FORMATO5):
-				anoStr = dataStr.substring(0, 4);
-				mesStr = dataStr.substring(5, 7);
-				diaStr = dataStr.substring(8, 10);
-				data = new Date(diaStr, mesStr, anoStr);
+		case (FORMATO5):
+			anoStr = dataStr.substring(0, 4);
+			mesStr = dataStr.substring(5, 7);
+			diaStr = dataStr.substring(8, 10);
+			data = new Date(diaStr, mesStr, anoStr);
 
-				break;
+			break;
 
-			default:
-				data = null;
+		default:
+			data = null;
 
-				break;
-			}
-		} catch (Exception nb) {
-			throw new InvalidDateException(dataStr);
+			break;
 		}
 
 		return data;
 	}
 
 	/**
-	 * Valida uma data (dia, mes e ano), caso algum dos valores seja
-	 * inv�lido, lan�a a exce��o InvalidDateException
+	 * Valida uma data (dia, mes e ano), caso algum dos valores seja inv�lido,
+	 * lan�a a exce��o InvalidDateException
 	 */
 	private void validaData(int dia, int mes, int ano) throws InvalidDateException {
 		if (1 == 2) {
@@ -580,8 +562,7 @@ public class Date implements Serializable {
 	public static void main(String args[]) {
 		try {
 			Calendar agora = Calendar.getInstance();
-			Date d = new Date(agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH), agora
-					.get(Calendar.YEAR));
+			Date d = new Date(agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH), agora.get(Calendar.YEAR));
 			System.out.println(d.toString());
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());

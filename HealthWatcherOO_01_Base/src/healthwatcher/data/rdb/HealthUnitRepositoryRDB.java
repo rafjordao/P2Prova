@@ -21,7 +21,6 @@ import lib.persistence.IPersistenceMechanism;
 import lib.util.ConcreteIterator;
 import lib.util.IteratorDsk;
 
-
 public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 
 	private IPersistenceMechanism mp;
@@ -35,14 +34,13 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 		specialityRep = new SpecialityRepositoryRDB(mp);
 	}
 
-	public void update(HealthUnit us) throws RepositoryException, ObjectNotFoundException,
-			ObjectNotValidException {
+	public void update(HealthUnit us) throws RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 		if (us != null) {
 			String sql = null;
 			try {
 				Statement stmt = (Statement) this.mp.getCommunicationChannel();
-				sql = "update SCBS_unidadesaude set " + "descricao='" + us.getDescription() + "'"
-						+ " where codigo = '" + us.getCode() + "'";
+				sql = "update SCBS_unidadesaude set " + "descricao='" + us.getDescription() + "'" + " where codigo = '"
+						+ us.getCode() + "'";
 				stmt.executeUpdate(sql);
 				stmt.close();
 			} catch (SQLException sqlException) {
@@ -114,12 +112,11 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 		return new ConcreteIterator(listaUs);
 	}
 
-	public IteratorDsk getPartialHealthUnitList() throws RepositoryException,
-			ObjectNotFoundException {
+	public IteratorDsk getPartialHealthUnitList() throws RepositoryException, ObjectNotFoundException {
 		List listaUs = new ArrayList();
 
 		// Query para selecionar os códigos de todas unidades de saúde
-		//existentes no sistema
+		// existentes no sistema
 		String sql = "SELECT codigo FROM SCBS_unidadesaude";
 		ResultSet rs = null;
 
@@ -128,7 +125,7 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 			rs = stmt.executeQuery(sql);
 
 			// O resultado da query é testado para saber
-			//da existência de unidades de saúde cadastradas.
+			// da existência de unidades de saúde cadastradas.
 			// Caso não existam uma exceção é lançada.
 			if (rs.next()) {
 				HealthUnit us = partialSearch((new Integer(rs.getString("codigo"))).intValue());
@@ -137,7 +134,7 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 				throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_PROCURA);
 			}
 
-			// 		O resultado da query é navegado, e cada
+			// O resultado da query é navegado, e cada
 			// código é informado à um método (procura) que
 			// monta uma unidade de sáude a partir do código.
 			while (rs.next()) {
@@ -155,21 +152,19 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 			throw new RepositoryException(ExceptionMessages.EXC_FALHA_PROCURA);
 		}
 
-		// 	O retorno desse método é uma estrutura que permite a
+		// O retorno desse método é uma estrutura que permite a
 		// iteração nos elementos
 		return new ConcreteIterator(listaUs);
 	}
 
-	public IteratorDsk getHealthUnitListBySpeciality(int code) throws RepositoryException,
-			ObjectNotFoundException {
+	public IteratorDsk getHealthUnitListBySpeciality(int code) throws RepositoryException, ObjectNotFoundException {
 		List listaUS = new ArrayList();
 
 		// Query para selecionar os códigos das unidades associadas
 		// a especialidade informada como parâmetro.
 		String sql = "select U.codigo from "
 				+ "SCBS_unidadeespecialidade R, SCBS_especialidade E, SCBS_unidadesaude U where "
-				+ "E.codigo=R.codigoespecialidade AND U.codigo=R.codigounidadesaude AND "
-				+ "E.codigo = '" + code + "'";
+				+ "E.codigo=R.codigoespecialidade AND U.codigo=R.codigounidadesaude AND " + "E.codigo = '" + code + "'";
 
 		ResultSet rs = null;
 
@@ -214,8 +209,8 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 		return new ConcreteIterator(listaUS);
 	}
 
-	public void insert(HealthUnit hu) throws RepositoryException, ObjectAlreadyInsertedException,
-			ObjectNotValidException {
+	public void insert(HealthUnit hu)
+			throws RepositoryException, ObjectAlreadyInsertedException, ObjectNotValidException {
 
 		if (hu != null) {
 			String sql = null;
@@ -252,8 +247,7 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 			// Query montada para recuperar os relacionamentos de
 			// unidades de saúde com especialidades
 			// filtrando pelo identificador da unidade.
-			sql = "select * from SCBS_unidadeespecialidade where " + "codigounidadesaude = '"
-					+ code + "'";
+			sql = "select * from SCBS_unidadeespecialidade where " + "codigounidadesaude = '" + code + "'";
 
 			Statement stmt = (Statement) this.mp.getCommunicationChannel();
 			resultSet = stmt.executeQuery(sql);
@@ -264,10 +258,9 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 			// (RepositorioEspecialidadeArray)
 			while (resultSet.next()) {
 				try {
-					MedicalSpeciality esp = specialityRep.search((new Integer(resultSet
-							.getString("codigoespecialidade"))).intValue());
-					System.out.println("medicalspeciality: " + esp.getCodigo() + " "
-							+ esp.getDescricao());
+					MedicalSpeciality esp = specialityRep
+							.search((new Integer(resultSet.getString("codigoespecialidade"))).intValue());
+					System.out.println("medicalspeciality: " + esp.getCodigo() + " " + esp.getDescricao());
 					specialities.add(esp);
 				} catch (ObjectNotFoundException ex) {
 				}
@@ -286,11 +279,12 @@ public class HealthUnitRepositoryRDB implements IHealthUnitRepository {
 			if (resultSet.next()) {
 				us = new HealthUnit(resultSet.getString("descricao"), specialities);
 
-				//us.setId(resultSet.getLong("ID"));
+				// us.setId(resultSet.getLong("ID"));
 				us.setCode((new Integer(resultSet.getString("codigo"))).intValue());
 
-				//preparar para buscar em outra tabela as especialidades desta unidade de saude
-				//depois vai chamar deepAccess() de RepositorioEspecialidadeBDR
+				// preparar para buscar em outra tabela as especialidades desta
+				// unidade de saude
+				// depois vai chamar deepAccess() de RepositorioEspecialidadeBDR
 			} else {
 				throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_PROCURA);
 			}

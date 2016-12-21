@@ -1,12 +1,13 @@
 package lib.util;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ConcreteIterator implements LocalIterator, java.io.Serializable {
+public class ConcreteIterator implements LocalIterator, Serializable {
 
 	private List list = null;
 	private int index = -1;
-	
+
 	public ConcreteIterator(List list) {
 
 		this.list = list;
@@ -30,12 +31,12 @@ public class ConcreteIterator implements LocalIterator, java.io.Serializable {
 			return null;
 		}
 	}
-	
-	public int getIndex(){
+
+	public int getIndex() {
 		return index;
 	}
-	
-	public int getListSize(){
+
+	public int getListSize() {
 		return list.size();
 	}
 

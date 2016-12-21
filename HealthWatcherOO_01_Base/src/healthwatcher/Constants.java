@@ -5,7 +5,7 @@ package healthwatcher;
  */
 public class Constants {
 
-//	 Database Configuration
+	// Database Configuration
 	public static final String DB_URL = "jdbc:odbc:test";
 	public static final String DB_LOGIN = "orbi2";
 	public static final String DB_PASS = "orbi2";
@@ -16,30 +16,36 @@ public class Constants {
 	public static final String SYSTEM_NAME = "HealthWatcher";
 
 	// SERVLETS Configuration
-	
+
 	// You should point this path to the base of the forms in your system
-	//public static final String FORM_PATH = "/opt/tomcat/webapps/servlet/first/";
-//	public static final String FORM_PATH = "c:\\Users\\greenwop\\workspace\\HealthWatcherOO_01_Base\\web\\healthwatcher\\formularios\\first\\";	
-	public static final String FORM_PATH = "C:\\Users\\rfpj\\workspace\\HealthWatcherOO_01_Base\\web\\healthwatcher\\formularios\\first\\";	
-	
-	//public static final String SERVLET_SERVER_PATH = "localhost:8080/healthwatcher";
+	// public static final String FORM_PATH =
+	// "/opt/tomcat/webapps/servlet/first/";
+	// public static final String FORM_PATH =
+	// "c:\\Users\\greenwop\\workspace\\HealthWatcherOO_01_Base\\web\\healthwatcher\\formularios\\first\\";
+	public static final String FORM_PATH = "C:\\Users\\Henrique\\Dropbox\\hemr\\eclipse-workspace\\case-studies\\aop\\tao\\java\\HealthWatcherOO_01_Base\\web\\healthwatcher\\formularios\\first\\";
+
+	// public static final String SERVLET_SERVER_PATH =
+	// "localhost:8080/healthwatcher";
 	public static final String SERVLET_SERVER_PATH = "localhost:8080/servlet/healthwatcher.view.servlets.";
 
-	//public static final String SYSTEM_ROOT = "http://localhost:8080/healthwatcher/";
+	// public static final String SYSTEM_ROOT =
+	// "http://localhost:8080/healthwatcher/";
 	public static final String SYSTEM_ROOT = "http://" + SERVLET_SERVER_PATH + "ServletWebServer?file=";
 
-	//public static final String SYSTEM_ROOT = "http://localhost:8080/healthwatcher/";
+	// public static final String SYSTEM_ROOT =
+	// "http://localhost:8080/healthwatcher/";
 	public static final String SYSTEM_ACTION = "http://" + SERVLET_SERVER_PATH + "HWServlet";
 
-	public static final String SYSTEM_INDEX = "http://"+SERVLET_SERVER_PATH + "ServletWebServer?file=index.html";
-	//public static final String SYSTEM_INDEX = SYSTEM_ROOT + "index.html";
+	public static final String SYSTEM_INDEX = "http://" + SERVLET_SERVER_PATH + "ServletWebServer?file=index.html";
+	// public static final String SYSTEM_INDEX = SYSTEM_ROOT + "index.html";
 
-	public static final String SYSTEM_INDEX_ADMINISTRATOR = "http://"+SERVLET_SERVER_PATH+"ServletLogin";
-	//public static final String SYSTEM_INDEX_ADMINISTRATOR = SYSTEM_ACTION + "?operation=LoginMenu";
+	public static final String SYSTEM_INDEX_ADMINISTRATOR = "http://" + SERVLET_SERVER_PATH + "ServletLogin";
+	// public static final String SYSTEM_INDEX_ADMINISTRATOR = SYSTEM_ACTION +
+	// "?operation=LoginMenu";
 
 	public static final String SYSTEM_LOGIN = SYSTEM_ROOT + "Login.html";
 	public static final String SYSTEM_QUERIES = SYSTEM_ROOT + "QueriesMenu.html";
-	
+
 	/**
 	 * Defines if the system should be persistent or not (use DB or not)
 	 * 
@@ -48,10 +54,10 @@ public class Constants {
 	public static boolean isPersistent() {
 		return false;
 	}
-	
-	public static int getComplaintIndex(){
+
+	public static int getComplaintIndex() {
 		return complaintIndex++;
 	}
-	
+
 	private static int complaintIndex;
 }

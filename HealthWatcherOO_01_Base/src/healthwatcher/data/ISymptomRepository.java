@@ -11,8 +11,8 @@ public interface ISymptomRepository {
 	public void insert(Symptom s) throws ObjectNotValidException, ObjectAlreadyInsertedException,
 			ObjectNotValidException, RepositoryException;
 
-	public void update(Symptom s) throws ObjectNotValidException, ObjectNotFoundException,
-			ObjectNotValidException, RepositoryException;
+	public void update(Symptom s)
+			throws ObjectNotValidException, ObjectNotFoundException, ObjectNotValidException, RepositoryException;
 
 	public boolean exists(int code) throws RepositoryException;
 

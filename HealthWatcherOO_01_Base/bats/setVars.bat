@@ -1,7 +1,7 @@
 @cls
 @
-@set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.7.0_25\
-@set HW_HOME=C:\Users\rfpj\workspace\HealthWatcherOO_01_Base
+@set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_92\
+@set HW_HOME=C:\Users\Henrique\Dropbox\hemr\eclipse-workspace\case-studies\aop\tao\java\HealthWatcherOO_01_Base
 @
 @set path=%JAVA_HOME%\bin;%path%
 @set path=%HW_HOME%\bats;%path%

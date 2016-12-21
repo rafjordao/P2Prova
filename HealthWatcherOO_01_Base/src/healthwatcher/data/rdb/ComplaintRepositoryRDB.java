@@ -29,7 +29,6 @@ import lib.util.ConcreteIterator;
 import lib.util.Date;
 import lib.util.IteratorDsk;
 
-
 public class ComplaintRepositoryRDB implements IComplaintRepository {
 
 	private IPersistenceMechanism mp;
@@ -60,8 +59,8 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 			complaint = new FoodComplaint();
 
 			// fazer join para acessar as duas tabelas
-			sql = "select * from SCBS_queixa q,SCBS_queixaalimentar qa where q.codigo=qa.codigo and q."
-					+ "codigo = '" + code + "';";
+			sql = "select * from SCBS_queixa q,SCBS_queixaalimentar qa where q.codigo=qa.codigo and q." + "codigo = '"
+					+ code + "';";
 
 			Statement stmt = (Statement) this.mp.getCommunicationChannel();
 			resultSet = stmt.executeQuery(sql);
@@ -110,8 +109,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 	 *                caso não seja encontrada uma queixa com o código
 	 *                especificado.
 	 */
-	private AnimalComplaint accessAnimal(int codigo) throws RepositoryException,
-			ObjectNotFoundException {
+	private AnimalComplaint accessAnimal(int codigo) throws RepositoryException, ObjectNotFoundException {
 
 		AnimalComplaint complaint;
 		String sql = null;
@@ -124,8 +122,8 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 			// A primeira tabela contém os dados genéricos a todas as
 			// queixas, a segunda tabela contém os dados específicos
 			// a complaint animal
-			sql = "select * from SCBS_queixa q,SCBS_queixaanimal qa where q.codigo=qa.codigo and q."
-					+ "codigo = '" + codigo + "'";
+			sql = "select * from SCBS_queixa q,SCBS_queixaanimal qa where q.codigo=qa.codigo and q." + "codigo = '"
+					+ codigo + "'";
 
 			Statement stmt = (Statement) this.mp.getCommunicationChannel();
 			resultSet = stmt.executeQuery(sql);
@@ -145,8 +143,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 				}
 				if (d != null) {
 					try {
-						complaint.setInconvenienceDate(new Date(d.getDate(), d.getMonth() + 1, d
-								.getYear() + 1900));
+						complaint.setInconvenienceDate(new Date(d.getDate(), d.getMonth() + 1, d.getYear() + 1900));
 					} catch (InvalidDateException ex) {
 					}
 				} else {
@@ -174,8 +171,8 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 		return complaint;
 	}
 
-	private void accessComplaint(ResultSet resultSet, Complaint complaint) throws SQLException,
-			ObjectNotFoundException, RepositoryException {
+	private void accessComplaint(ResultSet resultSet, Complaint complaint)
+			throws SQLException, ObjectNotFoundException, RepositoryException {
 		try {
 			complaint.setCodigo((new Integer(resultSet.getString("codigo"))).intValue());
 			complaint.setSolicitante(resultSet.getString("solicitante"));
@@ -204,8 +201,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 				}
 				if (d != null) {
 					try {
-						complaint.setDataParecer(new Date(d.getDate(), d.getMonth() + 1, d
-								.getYear() + 1900));
+						complaint.setDataParecer(new Date(d.getDate(), d.getMonth() + 1, d.getYear() + 1900));
 					} catch (InvalidDateException ex) {
 					}
 				} else {
@@ -223,8 +219,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 					d = null;
 				if (d != null) {
 					try {
-						complaint.setDataQueixa(new Date(d.getDate(), d.getMonth() + 1,
-								d.getYear() + 1900));
+						complaint.setDataQueixa(new Date(d.getDate(), d.getMonth() + 1, d.getYear() + 1900));
 					} catch (InvalidDateException ex) {
 					}
 				} else {
@@ -261,8 +256,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 	 *                caso não seja encontrada uma queixa com o código
 	 *                especificado.
 	 */
-	private SpecialComplaint accessSpecial(int code) throws RepositoryException,
-			ObjectNotFoundException {
+	private SpecialComplaint accessSpecial(int code) throws RepositoryException, ObjectNotFoundException {
 		SpecialComplaint complaint;
 		String sql = null;
 		try {
@@ -270,8 +264,8 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 			complaint = new SpecialComplaint();
 
 			// fazer join para acessar as duas tabelas
-			sql = "select * from SCBS_queixa q, SCBS_queixadiversa qd where q.codigo=qd.codigo and q."
-					+ "codigo = '" + code + "'";
+			sql = "select * from SCBS_queixa q, SCBS_queixadiversa qd where q.codigo=qd.codigo and q." + "codigo = '"
+					+ code + "'";
 
 			Statement stmt = (Statement) this.mp.getCommunicationChannel();
 			resultSet = stmt.executeQuery(sql);
@@ -285,8 +279,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 				complaint.setInstrucao(resultSet.getString("instrucao"));
 				complaint.setOcupacao(resultSet.getString("ocupacao"));
 
-				Address endO = addressRep.search((new Integer(resultSet
-						.getString("enderecoocorrencia")).intValue()));
+				Address endO = addressRep.search((new Integer(resultSet.getString("enderecoocorrencia")).intValue()));
 				complaint.setEnderecoOcorrencia(endO);
 			} else {
 				throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_PROCURA);
@@ -304,8 +297,8 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 		return complaint;
 	}
 
-	public void update(Complaint complaint) throws RepositoryException, ObjectNotFoundException,
-			ObjectNotValidException {
+	public void update(Complaint complaint)
+			throws RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 		synchronized (this) {
 			long timestamp;
 			try {
@@ -314,29 +307,25 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 					try {
 						Statement stmt = (Statement) this.mp.getCommunicationChannel();
 						// vendo se a versão do objeto é a mesma no BD
-						sql = "select ts from SCBS_queixa " + " where codigo='"
-								+ complaint.getCodigo() + "'";
+						sql = "select ts from SCBS_queixa " + " where codigo='" + complaint.getCodigo() + "'";
 						ResultSet resultSet = stmt.executeQuery(sql);
 						if (resultSet.next()) {
 							timestamp = (new Long(resultSet.getString("ts"))).longValue();
 							if (timestamp != complaint.getTimestamp()) {
-								throw new RepositoryException(
-										ExceptionMessages.EXC_FALHA_ATUALIZACAO_COPIA);
+								throw new RepositoryException(ExceptionMessages.EXC_FALHA_ATUALIZACAO_COPIA);
 							} else {
 								complaint.incTimestamp();
 							}
 						} else {
-							throw new ObjectNotFoundException(
-									ExceptionMessages.EXC_FALHA_ATUALIZACAO);
+							throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_ATUALIZACAO);
 						}
 						resultSet.close();
 						stmt.close();
 						stmt = (Statement) this.mp.getCommunicationChannel();
-						sql = "update SCBS_queixa set " + "observacao='"
-								+ complaint.getObservacao() + "', " + "situacao= '"
-								+ complaint.getSituacao() + "', " + "funcionario= '"
-								+ complaint.getAtendente().getLogin() + "', " + "ts= '"
-								+ complaint.getTimestamp() + "'";
+						sql = "update SCBS_queixa set " + "observacao='" + complaint.getObservacao() + "', "
+								+ "situacao= '" + complaint.getSituacao() + "', " + "funcionario= '"
+								+ complaint.getAtendente().getLogin() + "', " + "ts= '" + complaint.getTimestamp()
+								+ "'";
 
 						if (complaint.getDataParecer() != null) {
 							sql += ", dataparecer= '" + complaint.getDataParecer() + "'";
@@ -345,8 +334,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 
 						int response = stmt.executeUpdate(sql);
 						if (response == 0) {
-							throw new ObjectNotFoundException(
-									ExceptionMessages.EXC_FALHA_ATUALIZACAO);
+							throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_ATUALIZACAO);
 						}
 						stmt.close();
 					} catch (SQLException e) {
@@ -359,8 +347,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 			} catch (PersistenceMechanismException e) {
 				throw new RepositoryException(ExceptionMessages.EXC_FALHA_ATUALIZACAO);
 			}
-			updateTimestamp(complaint.getTimestamp() + "", "SCBS_queixa", complaint.getCodigo()
-					+ "");
+			updateTimestamp(complaint.getTimestamp() + "", "SCBS_queixa", complaint.getCodigo() + "");
 		}
 	}
 
@@ -373,12 +360,13 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 	 * 
 	 * try { sql = "SELECT * FROM QUEIXA";
 	 * 
-	 * if (tipo != 0) { sql += "tipoqueixa= "+tipo; if (data1 != null || data2 !=
-	 * null || situacao !=0) sql += " AND "; } if (data1 != null) { sql +=
-	 * "DATAQUEIXA > '"+Data.format(data1,Data.FORMATO1)+"'"; if (data2 != null ||
-	 * situacao !=0) sql += " AND "; } if (data2 != null) { sql += "DATAQUEIXA <
-	 * '"+Data.format(data2,Data.FORMATO1)+"'"; if (situacao !=0) sql += " AND "; }
-	 * if (situacao != 0) sql += "SITUACAOQUEIXA = '"+situacao+"'"; sql += ";";
+	 * if (tipo != 0) { sql += "tipoqueixa= "+tipo; if (data1 != null || data2
+	 * != null || situacao !=0) sql += " AND "; } if (data1 != null) { sql +=
+	 * "DATAQUEIXA > '"+Data.format(data1,Data.FORMATO1)+"'"; if (data2 != null
+	 * || situacao !=0) sql += " AND "; } if (data2 != null) { sql +=
+	 * "DATAQUEIXA < '"+Data.format(data2,Data.FORMATO1)+"'
+	 * "; if (situacao !=0) sql += " AND "; } if (situacao != 0) sql +=
+	 * "SITUACAOQUEIXA = '"+situacao+"'"; sql += ";";
 	 * 
 	 * java.sql.Statement stmt = (java.sql.Statement)
 	 * this.mp.getCommunicationChannel(); ResultSet rs = stmt.executeQuery(sql);
@@ -388,23 +376,23 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 	 * 
 	 * switch(tipo) { case Queixa.QUEIXA_ALIMENTAR: q = new QueixaAlimentar();
 	 * q.setWhereClause("codigo = '"+codigo+"'"); q.deepAccess(this.mp); break;
-	 * case Queixa.QUEIXA_DOENCA: q = new QueixaDoenca();
-	 * q.setWhereClause("codigo = '"+codigo+"'"); q.deepAccess(this.mp); break;
-	 * case Queixa.QUEIXA_ANIMAL: q = new QueixaAnimal();
-	 * q.setWhereClause("codigo = '"+codigo+"'"); q.deepAccess(this.mp); break;
-	 * case Queixa.QUEIXA_DIVERSA: q = new QueixaDiversa();
-	 * q.setWhereClause("codigo = '"+codigo+"'"); q.deepAccess(this.mp); break; }
+	 * case Queixa.QUEIXA_DOENCA: q = new QueixaDoenca(); q.setWhereClause(
+	 * "codigo = '"+codigo+"'"); q.deepAccess(this.mp); break; case
+	 * Queixa.QUEIXA_ANIMAL: q = new QueixaAnimal(); q.setWhereClause(
+	 * "codigo = '"+codigo+"'"); q.deepAccess(this.mp); break; case
+	 * Queixa.QUEIXA_DIVERSA: q = new QueixaDiversa(); q.setWhereClause(
+	 * "codigo = '"+codigo+"'"); q.deepAccess(this.mp); break; }
 	 * repQueixa.insere(q); } while (rs.next()) { codigo =
 	 * rs.getInt("codigoQUEIXA"); tipo = rs.getInt("tipoqueixa");
 	 * 
 	 * switch(tipo) { case Queixa.QUEIXA_ALIMENTAR: q = new QueixaAlimentar();
 	 * q.setWhereClause("codigo = '"+codigo+"'"); q.deepAccess(this.mp); break;
-	 * case Queixa.QUEIXA_DOENCA: q = new QueixaDoenca();
-	 * q.setWhereClause("codigo = '"+codigo+"'"); q.deepAccess(this.mp); break;
-	 * case Queixa.QUEIXA_ANIMAL: q = new QueixaAnimal();
-	 * q.setWhereClause("codigo = '"+codigo+"'"); q.deepAccess(this.mp); break;
-	 * case Queixa.QUEIXA_DIVERSA: q = new QueixaDiversa();
-	 * q.setWhereClause("codigo = '"+codigo+"'"); q.deepAccess(this.mp); break; }
+	 * case Queixa.QUEIXA_DOENCA: q = new QueixaDoenca(); q.setWhereClause(
+	 * "codigo = '"+codigo+"'"); q.deepAccess(this.mp); break; case
+	 * Queixa.QUEIXA_ANIMAL: q = new QueixaAnimal(); q.setWhereClause(
+	 * "codigo = '"+codigo+"'"); q.deepAccess(this.mp); break; case
+	 * Queixa.QUEIXA_DIVERSA: q = new QueixaDiversa(); q.setWhereClause(
+	 * "codigo = '"+codigo+"'"); q.deepAccess(this.mp); break; }
 	 * repQueixa.insere(q); }
 	 * 
 	 * rs.close(); stmt.close(); } catch(PersistenceMechanismException e) {
@@ -413,13 +401,13 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 	 * RepositoryException(ExceptionMessages.EXC_FALHA_TRANSACAO); }
 	 * catch(SQLException e) { throw new
 	 * RepositoryException(ExceptionMessages.EXC_FALHA_PROCURA); }
-	 * catch(ObjetoJaExistenteException e) {} catch(ObjectNotValidException e) {}
-	 * return repQueixa;
+	 * catch(ObjetoJaExistenteException e) {} catch(ObjectNotValidException e)
+	 * {} return repQueixa;
 	 * 
 	 * return null; }
 	 */
-	private void deepInsertFood(FoodComplaint complaint) throws PersistenceMechanismException,
-			RepositoryException, ObjectAlreadyInsertedException {
+	private void deepInsertFood(FoodComplaint complaint)
+			throws PersistenceMechanismException, RepositoryException, ObjectAlreadyInsertedException {
 		if (complaint.getEnderecoDoente() != null) {
 			try {
 				addressRep.insert(complaint.getEnderecoDoente());
@@ -429,8 +417,8 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 		insertFood(complaint);
 	}
 
-	private void deepInsertAnimal(AnimalComplaint complaint) throws PersistenceMechanismException,
-			RepositoryException, ObjectAlreadyInsertedException {
+	private void deepInsertAnimal(AnimalComplaint complaint)
+			throws PersistenceMechanismException, RepositoryException, ObjectAlreadyInsertedException {
 		if (complaint.getOccurenceLocalAddress() != null) {
 			try {
 				addressRep.insert(complaint.getOccurenceLocalAddress());
@@ -440,8 +428,8 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 		insertAnimal(complaint);
 	}
 
-	private void deepInsertCommon(Complaint complaint) throws ObjectAlreadyInsertedException,
-			PersistenceMechanismException, RepositoryException {
+	private void deepInsertCommon(Complaint complaint)
+			throws ObjectAlreadyInsertedException, PersistenceMechanismException, RepositoryException {
 		try {
 			if (complaint.getEnderecoSolicitante() != null) {
 				try {
@@ -505,8 +493,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 	}
 
 	private void deepInsertSpecial(SpecialComplaint complaint)
-			throws PersistenceMechanismException, RepositoryException,
-			ObjectAlreadyInsertedException {
+			throws PersistenceMechanismException, RepositoryException, ObjectAlreadyInsertedException {
 		if (complaint.getEnderecoOcorrencia() != null) {
 			try {
 				addressRep.insert(complaint.getEnderecoOcorrencia());
@@ -538,8 +525,8 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 		return response;
 	}
 
-	public int insert(Complaint complaint) throws ObjectAlreadyInsertedException,
-			RepositoryException, ObjectNotValidException {
+	public int insert(Complaint complaint)
+			throws ObjectAlreadyInsertedException, RepositoryException, ObjectNotValidException {
 		String consulta = null;
 		try {
 			if (complaint != null) {
@@ -676,8 +663,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 			if (rs.next()) {
 				tipoQueixa = (new Integer(rs.getString("tipoqueixa"))).intValue();
 			} else {
-				throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_PROCURA + " code: "
-						+ code);
+				throw new ObjectNotFoundException(ExceptionMessages.EXC_FALHA_PROCURA + " code: " + code);
 			}
 			rs.close();
 			stmt.close();
@@ -719,8 +705,7 @@ public class ComplaintRepositoryRDB implements IComplaintRepository {
 		Statement stmt = null;
 		int result = 0;
 		try {
-			String sql = "update " + tableName + " set ts='" + value + "' where codigo='" + id
-					+ "'";
+			String sql = "update " + tableName + " set ts='" + value + "' where codigo='" + id + "'";
 			stmt = (Statement) this.mp.getCommunicationChannel();
 			result = stmt.executeUpdate(sql);
 			if (result == 0) {

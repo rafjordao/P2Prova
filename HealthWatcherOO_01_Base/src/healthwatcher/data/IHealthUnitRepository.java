@@ -9,11 +9,11 @@ import healthwatcher.model.healthguide.HealthUnit;
 
 public interface IHealthUnitRepository {
 
-	public void insert(HealthUnit us) throws ObjectNotValidException,
-			ObjectAlreadyInsertedException, ObjectNotValidException, RepositoryException;
-
-	public void update(HealthUnit us) throws ObjectNotValidException, ObjectNotFoundException,
+	public void insert(HealthUnit us) throws ObjectNotValidException, ObjectAlreadyInsertedException,
 			ObjectNotValidException, RepositoryException;
+
+	public void update(HealthUnit us)
+			throws ObjectNotValidException, ObjectNotFoundException, ObjectNotValidException, RepositoryException;
 
 	public boolean exists(int num) throws RepositoryException;
 
@@ -23,8 +23,7 @@ public interface IHealthUnitRepository {
 
 	public IteratorDsk getHealthUnitList() throws ObjectNotFoundException, RepositoryException;
 
-	public IteratorDsk getPartialHealthUnitList() throws ObjectNotFoundException,
-			RepositoryException;
+	public IteratorDsk getPartialHealthUnitList() throws ObjectNotFoundException, RepositoryException;
 
 	public IteratorDsk getHealthUnitListBySpeciality(int codEspecialidade)
 			throws ObjectNotFoundException, RepositoryException;

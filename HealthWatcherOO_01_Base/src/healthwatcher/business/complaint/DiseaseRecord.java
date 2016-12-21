@@ -6,8 +6,6 @@ import lib.exceptions.ObjectNotFoundException;
 import lib.exceptions.RepositoryException;
 import lib.util.IteratorDsk;
 
-
-
 public class DiseaseRecord {
 
 	private IDiseaseRepository diseaseRep;

@@ -1,6 +1,6 @@
 package healthwatcher.model.complaint;
 
-public class Symptom{
+public class Symptom {
 
 	private int code;
 

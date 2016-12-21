@@ -31,8 +31,8 @@ public class DiseaseTypeRepositoryArray implements IDiseaseRepository {
 		symptoms.add(new Symptom("Symptom 2"));
 		symptoms.add(new Symptom("Symptom 3"));
 		try {
-			this.insert(new DiseaseType("Disease 1", "description 1", "manifestation 1", "duration 1", symptoms ));
-			this.insert(new DiseaseType("Disease 2", "description 2", "manifestation 2", "duration 2", symptoms ));
+			this.insert(new DiseaseType("Disease 1", "description 1", "manifestation 1", "duration 1", symptoms));
+			this.insert(new DiseaseType("Disease 2", "description 2", "manifestation 2", "duration 2", symptoms));
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,8 +42,7 @@ public class DiseaseTypeRepositoryArray implements IDiseaseRepository {
 		}
 	}
 
-	public void update(DiseaseType tp) throws RepositoryException, ObjectNotFoundException,
-			ObjectNotValidException {
+	public void update(DiseaseType tp) throws RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 		int i = getIndex(tp.getCode());
 		if (i == indice) {
 			throw new ObjectNotFoundException("Disease not found");
@@ -57,7 +56,7 @@ public class DiseaseTypeRepositoryArray implements IDiseaseRepository {
 		return (i != indice);
 	}
 
-	//metodo adicionado para uso dentro do iterator
+	// metodo adicionado para uso dentro do iterator
 	public boolean hasNext() {
 		return ponteiro < indice;
 	}

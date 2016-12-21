@@ -11,13 +11,11 @@ import lib.exceptions.RepositoryException;
 import lib.util.ConcreteIterator;
 import lib.util.IteratorDsk;
 
-
 public class ComplaintRepositoryArray implements IComplaintRepository {
 
 	private Complaint[] vetor;
 
 	private int indice;
-
 	private int ponteiro;
 
 	public ComplaintRepositoryArray() {
@@ -25,7 +23,7 @@ public class ComplaintRepositoryArray implements IComplaintRepository {
 		indice = 0;
 	}
 
-	//nao levanta objeto invalido exception
+	// nao levanta objeto invalido exception
 	public int insert(Complaint q) throws RepositoryException, ObjectAlreadyInsertedException {
 		synchronized (this) {
 			if (q == null) {

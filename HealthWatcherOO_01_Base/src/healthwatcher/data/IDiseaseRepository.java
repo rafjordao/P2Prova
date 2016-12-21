@@ -9,11 +9,11 @@ import healthwatcher.model.complaint.DiseaseType;
 
 public interface IDiseaseRepository {
 
-	public void insert(DiseaseType td) throws ObjectNotValidException,
-			ObjectAlreadyInsertedException, ObjectNotValidException, RepositoryException;
-
-	public void update(DiseaseType td) throws ObjectNotValidException, ObjectNotFoundException,
+	public void insert(DiseaseType td) throws ObjectNotValidException, ObjectAlreadyInsertedException,
 			ObjectNotValidException, RepositoryException;
+
+	public void update(DiseaseType td)
+			throws ObjectNotValidException, ObjectNotFoundException, ObjectNotValidException, RepositoryException;
 
 	public boolean exists(int code) throws RepositoryException;
 

@@ -8,7 +8,6 @@ import lib.exceptions.CommunicationException;
 import lib.util.IteratorDsk;
 import lib.util.LocalIterator;
 
-
 public class IteratorRMISourceAdapter implements IteratorDsk, Serializable {
 
 	private IIteratorRMITargetAdapter targetAdapter;
@@ -17,8 +16,7 @@ public class IteratorRMISourceAdapter implements IteratorDsk, Serializable {
 
 	private int index; // where to read next in the cache
 
-	public IteratorRMISourceAdapter(IIteratorRMITargetAdapter targetAdapter,
-			LocalIterator iterator, int cacheSize) {
+	public IteratorRMISourceAdapter(IIteratorRMITargetAdapter targetAdapter, LocalIterator iterator, int cacheSize) {
 
 		this.targetAdapter = targetAdapter;
 		cache = new Object[cacheSize];
@@ -41,8 +39,8 @@ public class IteratorRMISourceAdapter implements IteratorDsk, Serializable {
 	public void connect() throws CommunicationException {
 
 		try {
-			targetAdapter = (IIteratorRMITargetAdapter) Naming.lookup("//"
-					+ healthwatcher.Constants.SERVER_NAME + "/" + healthwatcher.Constants.SYSTEM_NAME);
+			targetAdapter = (IIteratorRMITargetAdapter) Naming
+					.lookup("//" + healthwatcher.Constants.SERVER_NAME + "/" + healthwatcher.Constants.SYSTEM_NAME);
 		} catch (Exception e) {
 			throw new CommunicationException(e.getMessage());
 		}

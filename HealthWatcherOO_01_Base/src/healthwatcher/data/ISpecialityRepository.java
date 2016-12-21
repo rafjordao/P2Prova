@@ -9,11 +9,11 @@ import healthwatcher.model.healthguide.MedicalSpeciality;
 
 public interface ISpecialityRepository {
 
-	public void insert(MedicalSpeciality esp) throws ObjectNotValidException,
-			ObjectAlreadyInsertedException, ObjectNotValidException, RepositoryException;
+	public void insert(MedicalSpeciality esp) throws ObjectNotValidException, ObjectAlreadyInsertedException,
+			ObjectNotValidException, RepositoryException;
 
-	public void update(MedicalSpeciality esp) throws ObjectNotValidException,
-			ObjectNotFoundException, ObjectNotValidException, RepositoryException;
+	public void update(MedicalSpeciality esp)
+			throws ObjectNotValidException, ObjectNotFoundException, ObjectNotValidException, RepositoryException;
 
 	public boolean exists(int num) throws RepositoryException;
 

@@ -4,7 +4,7 @@ import healthwatcher.model.address.Address;
 import healthwatcher.model.employee.Employee;
 import lib.util.Date;
 
-public class SpecialComplaint{
+public class SpecialComplaint extends Complaint {
 
 	private short idade;
 
@@ -14,18 +14,17 @@ public class SpecialComplaint{
 
 	private Address enderecoOcorrencia;
 
-	//construtor vazio
+	// construtor vazio
 	public SpecialComplaint() {
 	}
 
-	public SpecialComplaint(String solicitante, String descricao, String observacao, String email,
-			Employee atendente, int situacao, Date dataParecer, Date dataQueixa,
-			Address enderecoSolicitante, short idade, String instrucao, String ocupacao,
-			Address enderecoOcorrencia) {
+	public SpecialComplaint(String solicitante, String descricao, String observacao, String email, Employee atendente,
+			int situacao, Date dataParecer, Date dataQueixa, Address enderecoSolicitante, short idade, String instrucao,
+			String ocupacao, Address enderecoOcorrencia) {
 
-		//inicializar tambem o tipo da queixa
-		super(solicitante, descricao, observacao, email, atendente, situacao, dataParecer,
-				dataQueixa, enderecoSolicitante, 0);
+		// inicializar tambem o tipo da queixa
+		super(solicitante, descricao, observacao, email, atendente, situacao, dataParecer, dataQueixa,
+				enderecoSolicitante, 0);
 
 		this.idade = idade;
 		this.instrucao = instrucao;

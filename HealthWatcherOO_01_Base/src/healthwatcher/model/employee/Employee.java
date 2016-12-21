@@ -1,8 +1,6 @@
 package healthwatcher.model.employee;
 
-import java.io.Serializable;
-
-public class Employee{
+public class Employee {
 
 	private String name;
 

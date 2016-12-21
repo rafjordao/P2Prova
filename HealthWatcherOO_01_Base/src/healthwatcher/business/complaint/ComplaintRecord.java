@@ -11,7 +11,6 @@ import healthwatcher.model.complaint.AnimalComplaint;
 import healthwatcher.model.complaint.Complaint;
 import healthwatcher.model.complaint.FoodComplaint;
 
-
 public class ComplaintRecord {
 
 	private IComplaintRepository complaintRep;
@@ -24,8 +23,8 @@ public class ComplaintRecord {
 		return complaintRep.search(code);
 	}
 
-	public int insert(Complaint complaint) throws ObjectNotValidException,
-	ObjectAlreadyInsertedException, ObjectNotValidException, RepositoryException {
+	public int insert(Complaint complaint) throws ObjectNotValidException, ObjectAlreadyInsertedException,
+			ObjectNotValidException, RepositoryException {
 		this.validate(complaint);
 		if (complaintRep.exists(complaint.getCodigo())) {
 			throw new ObjectAlreadyInsertedException("Complaint code already registered");
@@ -53,8 +52,7 @@ public class ComplaintRecord {
 		}
 	}
 
-	public void update(Complaint q) throws RepositoryException, ObjectNotFoundException,
-			ObjectNotValidException {
+	public void update(Complaint q) throws RepositoryException, ObjectNotFoundException, ObjectNotValidException {
 		complaintRep.update(q);
 	}
 
