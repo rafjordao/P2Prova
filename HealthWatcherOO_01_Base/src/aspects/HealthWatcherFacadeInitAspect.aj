@@ -26,7 +26,7 @@ privileged public aspect HealthWatcherFacadeInitAspect {
 	pointcut updateObjectNotValidException(HealthWatcherFacadeInit obj) : handler(ObjectNotValidException) && this(obj);
 	pointcut updateObjectNotFoundException(HealthWatcherFacadeInit obj) : handler(ObjectNotFoundException) && this(obj);
 	
-	before (HealthWatcherFacadeInit obj, TransactionException e) throws TransactionException: updateTransactionException(obj) && args(e){
+	/*before (HealthWatcherFacadeInit obj, TransactionException e) throws TransactionException: updateTransactionException(obj) && args(e){
 		obj.getPm().rollbackTransaction();
 		throw e;
 	}
@@ -41,6 +41,6 @@ privileged public aspect HealthWatcherFacadeInitAspect {
 					ObjectNotFoundException: updateObjectNotFoundException(obj) && args(e){
 		obj.getPm().rollbackTransaction();
 		throw e;
-	}
+	}*/
 		
 }

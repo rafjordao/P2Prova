@@ -304,12 +304,6 @@ public class HealthWatcherFacadeInit {
 			getPm().beginTransaction();
 			employeeRecord.insert(employee);
 			getPm().commitTransaction();
-		} catch (ObjectAlreadyInsertedException e) {
-			getPm().rollbackTransaction();
-			throw e;
-		} catch (ObjectNotValidException e) {
-			getPm().rollbackTransaction();
-			throw e;
 		} catch (TransactionException e) {
 			getPm().rollbackTransaction();
 			throw e;
@@ -382,9 +376,6 @@ public class HealthWatcherFacadeInit {
 			employeeRecord.update(employee);
 			getPm().commitTransaction();
 		} catch (TransactionException e) {
-			getPm().rollbackTransaction();
-			throw e;
-		} catch (ObjectNotFoundException e) {
 			getPm().rollbackTransaction();
 			throw e;
 		} catch (Exception e) {
