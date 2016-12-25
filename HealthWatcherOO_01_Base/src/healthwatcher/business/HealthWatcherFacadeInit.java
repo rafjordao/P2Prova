@@ -371,15 +371,8 @@ public class HealthWatcherFacadeInit {
 	}
 
 	public void update(Employee employee) {
-		try {
-			getPm().beginTransaction();
-			employeeRecord.update(employee);
-			getPm().commitTransaction();
-		} catch (TransactionException e) {
-			getPm().rollbackTransaction();
-			throw e;
-		} catch (Exception e) {
-			getPm().rollbackTransaction();
-		}
+		getPm().beginTransaction();
+		employeeRecord.update(employee);
+		getPm().commitTransaction();
 	}
 }

@@ -52,44 +52,31 @@ public class Date implements Serializable {
 
 	public Date(int segundo, int minuto, int hora, int dia, int mes, int ano)
 			throws InvalidDateException {
-		try {
-			this.dia = dia;
-			this.mes = mes;
-			this.ano = ano;
-			horario = new Schedule(segundo, minuto, hora);
+		this.dia = dia;
+		this.mes = mes;
+		this.ano = ano;
+		horario = new Schedule(segundo, minuto, hora);
 
-			validaData(dia, mes, ano);
-		} catch (InvalidDateException e) {
-			throw new InvalidDateException(dia, mes, ano);
-		}
+		validaData(dia, mes, ano);
 
 	}
 
 	public Date(String diaStr, String mesStr, String anoStr) throws InvalidDateException {
-		try {
 			this.dia = Integer.parseInt(diaStr);
 			this.mes = Integer.parseInt(mesStr);
 			this.ano = Integer.parseInt(anoStr);
 			this.horario = null;
-		} catch (Exception e) {
-			throw new InvalidDateException(dia, mes, ano);
-		}
 
 		validaData(dia, mes, ano);
 	}
 
 	public Date(String segundoStr, String minutoStr, String horaStr, String diaStr, String mesStr,
 			String anoStr) throws InvalidDateException {
-		try {
-			this.dia = Integer.parseInt(diaStr);
-			this.mes = Integer.parseInt(mesStr);
-			this.ano = Integer.parseInt(anoStr);
-			this.horario = new Schedule(Integer.parseInt(segundoStr), Integer.parseInt(minutoStr),
+		this.dia = Integer.parseInt(diaStr);
+		this.mes = Integer.parseInt(mesStr);
+		this.ano = Integer.parseInt(anoStr);
+		this.horario = new Schedule(Integer.parseInt(segundoStr), Integer.parseInt(minutoStr),
 					Integer.parseInt(horaStr));
-		} catch (Exception e) {
-			throw new InvalidDateException(dia, mes, ano);
-		}
-
 		validaData(dia, mes, ano);
 	}
 
@@ -503,61 +490,57 @@ public class Date implements Serializable {
 		String minutoStr, segundoStr, horaStr;
 		Date data = null;
 
-		try {
-			switch (formato) {
+		switch (formato) {
 
-			case (FORMATO1):
-				diaStr = dataStr.substring(0, 2);
-				mesStr = dataStr.substring(3, 5);
-				anoStr = dataStr.substring(6, 10);
-				data = new Date(diaStr, mesStr, anoStr);
+		case (FORMATO1):
+			diaStr = dataStr.substring(0, 2);
+			mesStr = dataStr.substring(3, 5);
+			anoStr = dataStr.substring(6, 10);
+			data = new Date(diaStr, mesStr, anoStr);
 
-				break;
+			break;
 
-			case (FORMATO2):
-				diaStr = dataStr.substring(0, 2);
-				mesStr = dataStr.substring(3, 5);
-				anoStr = dataStr.substring(6, 10);
-				horaStr = dataStr.substring(11, 13);
-				minutoStr = dataStr.substring(14, 16);
-				segundoStr = dataStr.substring(17, 19);
-				data = new Date(segundoStr, minutoStr, horaStr, diaStr, mesStr, anoStr);
+		case (FORMATO2):
+			diaStr = dataStr.substring(0, 2);
+			mesStr = dataStr.substring(3, 5);
+			anoStr = dataStr.substring(6, 10);
+			horaStr = dataStr.substring(11, 13);
+			minutoStr = dataStr.substring(14, 16);
+			segundoStr = dataStr.substring(17, 19);
+			data = new Date(segundoStr, minutoStr, horaStr, diaStr, mesStr, anoStr);
 
-				break;
+			break;
 
-			case (FORMATO3):
-				diaStr = dataStr.substring(0, 2);
-				mesStr = dataStr.substring(2, 4);
-				anoStr = dataStr.substring(4, 8);
+		case (FORMATO3):
+			diaStr = dataStr.substring(0, 2);
+			mesStr = dataStr.substring(2, 4);
+			anoStr = dataStr.substring(4, 8);
+	
+			break;
 
-				break;
+		case (FORMATO4):
+			diaStr = dataStr.substring(0, 2);
+			mesStr = dataStr.substring(2, 4);
+			anoStr = dataStr.substring(4, 8);
+			horaStr = dataStr.substring(8, 10);
+			minutoStr = dataStr.substring(10, 12);
+			segundoStr = dataStr.substring(12, 14);
+			data = new Date(segundoStr, minutoStr, horaStr, diaStr, mesStr, anoStr);
+	
+			break;
 
-			case (FORMATO4):
-				diaStr = dataStr.substring(0, 2);
-				mesStr = dataStr.substring(2, 4);
-				anoStr = dataStr.substring(4, 8);
-				horaStr = dataStr.substring(8, 10);
-				minutoStr = dataStr.substring(10, 12);
-				segundoStr = dataStr.substring(12, 14);
-				data = new Date(segundoStr, minutoStr, horaStr, diaStr, mesStr, anoStr);
+		case (FORMATO5):
+			anoStr = dataStr.substring(0, 4);
+			mesStr = dataStr.substring(5, 7);
+			diaStr = dataStr.substring(8, 10);
+			data = new Date(diaStr, mesStr, anoStr);
+	
+			break;
 
-				break;
+		default:
+			data = null;
 
-			case (FORMATO5):
-				anoStr = dataStr.substring(0, 4);
-				mesStr = dataStr.substring(5, 7);
-				diaStr = dataStr.substring(8, 10);
-				data = new Date(diaStr, mesStr, anoStr);
-
-				break;
-
-			default:
-				data = null;
-
-				break;
-			}
-		} catch (Exception nb) {
-			throw new InvalidDateException(dataStr);
+			break;
 		}
 
 		return data;

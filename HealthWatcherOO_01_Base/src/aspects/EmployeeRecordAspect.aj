@@ -43,13 +43,4 @@ privileged public aspect EmployeeRecordAspect {
 		obj.manager.endExecution(employee.getLogin());
 	}
 	
-	/*before(EmployeeRecord obj, Employee employee) : execution(public void EmployeeRecord.insert(Employee))
-													&& this(obj) && args(employee){
-		if(obj.employeeRepository.exists(employee.getLogin())){
-			throw new ObjectAlreadyInsertedException(ExceptionMessages.EXC_JA_EXISTE);
-		}
-	}*/
-	
-	
-	
 }

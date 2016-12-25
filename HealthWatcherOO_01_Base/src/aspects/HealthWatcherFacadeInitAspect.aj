@@ -21,26 +21,22 @@ privileged public aspect HealthWatcherFacadeInitAspect {
 	declare soft : RepositoryException : execution(public void HealthWatcherFacadeInit.update(Employee));
 	
 	declare soft : ObjectNotFoundException : execution(public void HealthWatcherFacadeInit.update(Employee));
-		
-	pointcut updateTransactionException(HealthWatcherFacadeInit obj) : handler(TransactionException) && this(obj);
-	pointcut updateObjectNotValidException(HealthWatcherFacadeInit obj) : handler(ObjectNotValidException) && this(obj);
-	pointcut updateObjectNotFoundException(HealthWatcherFacadeInit obj) : handler(ObjectNotFoundException) && this(obj);
 	
-	/*before (HealthWatcherFacadeInit obj, TransactionException e) throws TransactionException: updateTransactionException(obj) && args(e){
-		obj.getPm().rollbackTransaction();
-		throw e;
+	pointcut update(): execution(public void HealthWatcherFacadeInit.update(Employee));
+	
+	void around(HealthWatcherFacadeInit obj, Employee employee): update() && target(obj) && args(employee){
+		try{
+			try {
+				proceed(obj,employee);
+			} catch (TransactionException e) {
+				obj.getPm().rollbackTransaction();
+				throw e;
+			} catch (Exception e) {
+				obj.getPm().rollbackTransaction();
+			}
+		} catch(Exception e1){
+			e1.printStackTrace();
+		}
 	}
 	
-	before (HealthWatcherFacadeInit obj, ObjectNotValidException e) throws TransactionException,
-					ObjectNotValidException : updateObjectNotValidException(obj) && args(e){
-		obj.getPm().rollbackTransaction();
-		throw e;
-	}
-	
-	before (HealthWatcherFacadeInit obj, ObjectNotFoundException e) throws TransactionException,
-					ObjectNotFoundException: updateObjectNotFoundException(obj) && args(e){
-		obj.getPm().rollbackTransaction();
-		throw e;
-	}*/
-		
 }
